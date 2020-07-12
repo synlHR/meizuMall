@@ -1,6 +1,8 @@
 package com.jojo.dao;
 
 import com.jojo.pojo.Shopping;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 public interface ShoppingMapper {
@@ -15,4 +17,6 @@ public interface ShoppingMapper {
     int updateByPrimaryKey(Shopping record);
 
     List<Shopping> selectByUid(Integer uid);
+
+    void updateShoppingBySID(@Param("sid")Integer sid, @Param("num")Integer num);
 }

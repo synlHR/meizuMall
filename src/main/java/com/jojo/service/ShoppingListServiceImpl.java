@@ -7,6 +7,7 @@ import com.jojo.pojo.Image;
 import com.jojo.pojo.Phone;
 import com.jojo.pojo.Shopping;
 import com.jojo.util.ResultVo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +37,10 @@ public class ShoppingListServiceImpl implements ShoppingListService {
             shopping.setImageUrl(imageUrl);
         }
         return ResultVo.success("success",shoppingList);
+    }
+
+    @Override
+    public void updateShoppingBySID(@Param("sid")Integer sid, @Param("num")Integer num) {
+        shoppingMapper.updateShoppingBySID(sid,num);
     }
 }

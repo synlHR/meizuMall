@@ -43,4 +43,9 @@
   <select id="selectByCid" resultMap="BaseResultMap">
     select * from tb_shopping where uid = #{uid}
   </select>
+
+  <update id="updateShoppingBySID">
+    update tb_shopping set num = #{num} where sid = #{sid}
+  </update>
+
 </mapper>

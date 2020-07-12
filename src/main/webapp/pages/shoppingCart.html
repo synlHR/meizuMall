@@ -59,7 +59,7 @@
                 <tr>
                     <td class="cart-col-select">
                         <div class="cart-select-all JSelectAll" data-mdesc="全选按钮" data-mtype="store_cart_all" data-bh="click_store_cart_all">
-                            <div class="mz-checkbox checked"></div>
+                            <input type="checkbox" @click ="selectAll" :checked="shoppingList.length==selectedBookList.length" class="mz-checkbox">
                             <span class="cart-select-title">全选</span>
                         </div> </td>
                     <td class="cart-col-price">单价(元)</td>
@@ -78,7 +78,7 @@
                         <tr class="cart-product hasTheBinder">
                             <td class="cart-col-select">
 <!--                                选择框-->
-                                <div class="mz-checkbox checked"></div>
+                                <input type="checkbox" @click ="selectOne(index)" :checked="selectedBookList.indexOf(shopping.sid)>=0" class="mz-checkbox">
 <!--                                图片-->
                                 <img :src="shopping.imageUrl" class="cart-product-img"  style="display: inline;" />
                                 <a href="https://detail.meizu.com/item/meizu17.html?skuId=12798" class="cart-product-link cart-product-info" target="_blank" data-mdesc="购物车商品位" data-mtype="click_store_cart_prod" data-bh="click_store_cart_prod">
@@ -90,13 +90,13 @@
                             <td class="cart-col-price"> <p> <span class="cart-product-price">{{shopping.phone.baseprice}}</span></p> </td>
                             <td class="cart-col-number">
                                 <div class="cart-product-number-adder">
-                                    <p class="cart-product-number-max"></p>
+                                    <p v-if="shopping.num==3" class="cart-product-number-max show">限购3件</p>
                                     <div class="mz-adder">
-                                        <button @click="changeNum(0)" id="subButton" class="mz-adder-subtract"></button>
+                                        <button @click="changeNum(0,shopping)" id="subButton" class="mz-adder-subtract"></button>
                                         <div class="mz-adder-num">
-                                            <input  v-model = "num = shopping.num" type="text" class="mz-adder-input" />
+                                            <input  v-model = "shopping.num" type="text" class="mz-adder-input" />
                                         </div>
-                                        <button @click="changeNum(1)" id = "addButton" class="mz-adder-add"></button>
+                                        <button @click="changeNum(1,shopping)" id = "addButton" class="mz-adder-add"></button>
                                     </div>
                                 </div> </td>
                             <td class="cart-col-total"> <span class="cart-product-price total main-goods">{{shopping.phone.baseprice*shopping.num}}</span></td>
@@ -112,7 +112,7 @@
             <div class="mzcontainer">
                 <div class="cart-footer-left">
                     <div class="cart-select-all JSelectAll" data-mdesc="全选按钮" data-mtype="store_cart_all" data-bh="click_store_cart_all">
-                        <div class="mz-checkbox checked"></div>
+                        <input type="checkbox" @click ="selectAll" :checked="shoppingList.length==selectedBookList.length" class="mz-checkbox">
                         <span class="cart-select-title">全选</span>
                     </div>
                     <span class="cart-remove-selected" data-mdesc="删除选中商品" data-mtype="store_cart_batch" data-bh="click_store_cart_batch" id="removeSelected">删除选中的商品</span>
@@ -184,10 +184,10 @@
         data:{
             test:1,
             shoppingList:[],
+            selectedBookList:[],//存储被选中的购物车数据的数组(只存购物车id)
             num:1
         },
         mounted:function () {
-            console.log("进入mounted")
             axios.post("/phones/getShoppingList")
                 .then(function (res) {
                     if(res.data.code==0){
@@ -198,27 +198,77 @@
                 })
         },
         methods:{
-            changeNum:function(flag){
+            changeNum:function(flag,shopping){
                 //flag是0，代表较小，否则就是增加
                 if(flag==0){
 
-
-
-
-
-                    if(this.num == 1){
+                    if(shopping.num > 1){
+                        shopping.num --;
+                    }
+                    if(shopping.num == 1){
                         document.getElementById("subButton").className = "mz-adder-subtract disabled"
-                    }else{
-                        this.num = this.num - 1;
+                    }
+                    if(shopping.num < 3){
+                        document.getElementById("addButton").className = "mz-adder-add"
                     }
                 }else{
-                    if(this.num == 3){
+                    if(shopping.num < 3){
+                        shopping.num++;
+                    }
+                    if(shopping.num==3){
                         document.getElementById("addButton").className = "mz-adder-add disabled"
-                    }else{
-                        this.num = this.num + 1;
+                    }
+                    if(shopping.num > 1){
+                        document.getElementById("subButton").className = "mz-adder-subtract"
                     }
                 }
-            }
+                axios.get("/phones/updateShoppingBySID",{
+                    params:{
+                        sid:shopping.sid,
+                        num:shopping.num
+                    }
+                })
+            },
+            //点击全选
+            selectAll:function () {
+                var that = this;
+                //判断此按钮的状态
+                if(!event.currentTarget.checked){
+                    //取消全选
+                    that.selectedBookList = [];
+                }else{
+                    that.selectedBookList = [];//清空原来添加的sid  避免先点了单选，然后直接点全选的问题出现
+                    //全选
+                    that.shoppingList.forEach(function (v) {
+                        //数组添加元素
+                        that.selectedBookList.push(v.sid);
+                        console.log(v.sid)
+                    })
+                }
+                console.log(that.selectedBookList);
+            },
+            //点击单选
+            selectOne:function (index) {
+                var that = this;
+                // console.log(index);
+                //判断当前选择的状态
+                if(event.currentTarget.checked){
+                    //被选中，添加到selectedBookList中
+                    that.selectedBookList.push(that.shoppingList[index].sid);
+                }else{
+                    //取消选中,将selectedBookList中对应的sid删除
+                    //遍历所有被选中的商品
+                    for(var i=0;i<that.selectedBookList.length;i++){
+                        //点击哪个按钮的单选框，就把他对应的sid找到，跟selectedBookList里面每一个元素比较
+                        if(that.shoppingList[index].sid==that.selectedBookList[i]){
+                            //splice(a,b):a是删除元素的下标，b:删除的个数
+                            that.selectedBookList.splice(i,1);
+                            break;
+                        }
+                    }
+                }
+                console.log(that.selectedBookList);
+            },
         }
 
     })

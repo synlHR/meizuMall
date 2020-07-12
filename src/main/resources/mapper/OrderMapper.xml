@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jojo.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.jojo.pojo.Order" >
+    <id column="oid" property="oid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="totalprice" property="totalprice" jdbcType="DOUBLE" />
+    <result column="aid" property="aid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_order
+    where oid = #{oid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jojo.pojo.Order" >
+    insert into tb_order (oid, uid, createtime, 
+      totalprice, aid)
+    values (#{oid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{totalprice,jdbcType=DOUBLE}, #{aid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Order" >
+    update tb_order
+    set uid = #{uid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      totalprice = #{totalprice,jdbcType=DOUBLE},
+      aid = #{aid,jdbcType=INTEGER}
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select oid, uid, createtime, totalprice, aid
+    from tb_order
+    where oid = #{oid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select oid, uid, createtime, totalprice, aid
+    from tb_order
+  </select>
+</mapper>

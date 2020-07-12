@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jojo.dao.ColorMapper" >
+  <resultMap id="BaseResultMap" type="com.jojo.pojo.Color" >
+    <id column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="colorname" property="colorname" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_color
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jojo.pojo.Color" >
+    insert into tb_color (cid, colorname, pid
+      )
+    values (#{cid,jdbcType=INTEGER}, #{colorname,jdbcType=VARCHAR}, #{pid,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Color" >
+    update tb_color
+    set colorname = #{colorname,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select cid, colorname, pid
+    from tb_color
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select cid, colorname, pid
+    from tb_color
+  </select>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jojo.dao.PhoneMapper" >
+  <resultMap id="BaseResultMap" type="com.jojo.pojo.Phone" >
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="phonename" property="phonename" jdbcType="VARCHAR" />
+    <result column="baseprice" property="baseprice" jdbcType="DOUBLE" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_phone
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jojo.pojo.Phone" >
+    insert into tb_phone (pid, phonename, baseprice, 
+      mid)
+    values (#{pid,jdbcType=INTEGER}, #{phonename,jdbcType=VARCHAR}, #{baseprice,jdbcType=DOUBLE}, 
+      #{mid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Phone" >
+    update tb_phone
+    set phonename = #{phonename,jdbcType=VARCHAR},
+      baseprice = #{baseprice,jdbcType=DOUBLE},
+      mid = #{mid,jdbcType=INTEGER}
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select pid, phonename, baseprice, mid
+    from tb_phone
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select pid, phonename, baseprice, mid
+    from tb_phone
+  </select>
+</mapper>

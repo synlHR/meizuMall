@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--settings配置mybatis打印执行的SQL语句-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+    <typeAliases>
+        <!--给操作的实体类取别名-->
+        <!--<typeAlias type="com.jojo.pojo.Student" alias="Student"></typeAlias>-->
+        <!--直接导入整合POJO包，默认别名就是类名-->
+        <package name="com.jojo.pojo"></package>
+    </typeAliases>
+</configuration>

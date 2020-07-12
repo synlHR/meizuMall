@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jojo.dao.OrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.jojo.pojo.OrderDetail" >
+    <id column="odid" property="odid" jdbcType="INTEGER" />
+    <result column="oid" property="oid" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_order_detail
+    where odid = #{odid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jojo.pojo.OrderDetail" >
+    insert into tb_order_detail (odid, oid, pid, 
+      num)
+    values (#{odid,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
+      #{num,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.OrderDetail" >
+    update tb_order_detail
+    set oid = #{oid,jdbcType=INTEGER},
+      pid = #{pid,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER}
+    where odid = #{odid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select odid, oid, pid, num
+    from tb_order_detail
+    where odid = #{odid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select odid, oid, pid, num
+    from tb_order_detail
+  </select>
+</mapper>

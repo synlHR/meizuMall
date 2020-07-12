@@ -1,35 +1,35 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jojo.dao.ShoppingMapper" >
-  <resultMap id="BaseResultMap" type="com.jojo.pojo.Shopping" >
-    <id column="sid" property="sid" jdbcType="INTEGER" />
-    <result column="uid" property="uid" jdbcType="INTEGER" />
-    <result column="pid" property="pid" jdbcType="INTEGER" />
-    <result column="num" property="num" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jojo.dao.ShoppingMapper">
+  <resultMap id="BaseResultMap" type="com.jojo.pojo.Shopping">
+    <id column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="num" jdbcType="INTEGER" property="num" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_shopping
     where sid = #{sid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jojo.pojo.Shopping" >
+  <insert id="insert" parameterType="com.jojo.pojo.Shopping">
     insert into tb_shopping (sid, uid, pid, 
       num)
     values (#{sid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
       #{num,jdbcType=INTEGER})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Shopping" >
+  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Shopping">
     update tb_shopping
     set uid = #{uid,jdbcType=INTEGER},
       pid = #{pid,jdbcType=INTEGER},
       num = #{num,jdbcType=INTEGER}
     where sid = #{sid,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select sid, uid, pid, num
     from tb_shopping
     where sid = #{sid,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+  <select id="selectAll" resultMap="BaseResultMap">
     select sid, uid, pid, num
     from tb_shopping
   </select>

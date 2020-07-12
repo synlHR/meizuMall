@@ -1,34 +1,35 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jojo.dao.MemoryMapper" >
-  <resultMap id="BaseResultMap" type="com.jojo.pojo.Memory" >
-    <id column="mid" property="mid" jdbcType="INTEGER" />
-    <result column="memoryname" property="memoryname" jdbcType="VARCHAR" />
-    <result column="addprice" property="addprice" jdbcType="INTEGER" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jojo.dao.MemoryMapper">
+  <resultMap id="BaseResultMap" type="com.jojo.pojo.Memory">
+    <id column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="memoryname" jdbcType="VARCHAR" property="memoryname" />
+    <result column="addprice" jdbcType="INTEGER" property="addprice" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_memory
     where mid = #{mid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jojo.pojo.Memory" >
+  <insert id="insert" parameterType="com.jojo.pojo.Memory">
     insert into tb_memory (mid, memoryname, addprice
       )
     values (#{mid,jdbcType=INTEGER}, #{memoryname,jdbcType=VARCHAR}, #{addprice,jdbcType=INTEGER}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Memory" >
+  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Memory">
     update tb_memory
     set memoryname = #{memoryname,jdbcType=VARCHAR},
       addprice = #{addprice,jdbcType=INTEGER}
     where mid = #{mid,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select mid, memoryname, addprice
     from tb_memory
     where mid = #{mid,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+  <select id="selectAll" resultMap="BaseResultMap">
     select mid, memoryname, addprice
     from tb_memory
   </select>
+
 </mapper>

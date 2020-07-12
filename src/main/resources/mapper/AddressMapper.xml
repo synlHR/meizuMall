@@ -1,21 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jojo.dao.AddressMapper" >
-  <resultMap id="BaseResultMap" type="com.jojo.pojo.Address" >
-    <id column="aid" property="aid" jdbcType="INTEGER" />
-    <result column="uid" property="uid" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="tel" property="tel" jdbcType="VARCHAR" />
-    <result column="province" property="province" jdbcType="VARCHAR" />
-    <result column="city" property="city" jdbcType="VARCHAR" />
-    <result column="country" property="country" jdbcType="VARCHAR" />
-    <result column="addres_detail" property="addresDetail" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jojo.dao.AddressMapper">
+  <resultMap id="BaseResultMap" type="com.jojo.pojo.Address">
+    <id column="aid" jdbcType="INTEGER" property="aid" />
+    <result column="uid" jdbcType="INTEGER" property="uid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="addres_detail" jdbcType="VARCHAR" property="addresDetail" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_address
     where aid = #{aid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jojo.pojo.Address" >
+  <insert id="insert" parameterType="com.jojo.pojo.Address">
     insert into tb_address (aid, uid, name, 
       tel, province, city, 
       country, addres_detail)
@@ -23,7 +23,7 @@
       #{tel,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
       #{country,jdbcType=VARCHAR}, #{addresDetail,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Address" >
+  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Address">
     update tb_address
     set uid = #{uid,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
@@ -34,13 +34,14 @@
       addres_detail = #{addresDetail,jdbcType=VARCHAR}
     where aid = #{aid,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select aid, uid, name, tel, province, city, country, addres_detail
     from tb_address
     where aid = #{aid,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
+  <select id="selectAll" resultMap="BaseResultMap">
     select aid, uid, name, tel, province, city, country, addres_detail
     from tb_address
   </select>
+
 </mapper>

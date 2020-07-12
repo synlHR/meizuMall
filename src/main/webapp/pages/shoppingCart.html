@@ -25,10 +25,10 @@
     <link href="/webResources/shoppingCartResources/cart-189e8e56b7.css" rel="stylesheet" />
 </head>
 <body>
-<script src="/webResources/shoppingCartResources/hm.js"></script>
-<script src="/webResources/shoppingCartResources/flow.js"></script>
-<script src="/webResources/shoppingCartResources/analytics-min.js"></script>
-<script>var layoutHeaderData = false;</script>
+<!--<script src="/webResources/shoppingCartResources/hm.js"></script>-->
+<!--<script src="/webResources/shoppingCartResources/flow.js"></script>-->
+<!--<script src="/webResources/shoppingCartResources/analytics-min.js"></script>-->
+<!--<script>var layoutHeaderData = false;</script>-->
 <div id="app">
     <div class="layout-header clearfix layout-header-order login">
         <div class="mzcontainer">
@@ -80,7 +80,7 @@
 <!--                                选择框-->
                                 <div class="mz-checkbox checked"></div>
 <!--                                图片-->
-                                <img class="cart-product-img" src="/webResources/shoppingCartResources/Cgbj0F6zwMuANEeWAAw6yQFAJXM097.png@120x120.png" style="display: inline;" />
+                                <img class="cart-product-img"  style="display: inline;" />
                                 <a href="https://detail.meizu.com/item/meizu17.html?skuId=12798" class="cart-product-link cart-product-info" target="_blank" data-mdesc="购物车商品位" data-mtype="click_store_cart_prod" data-bh="click_store_cart_prod">
 <!--                                    名称-->
                                     <p class="cart-product-item-name">魅族 18</p>
@@ -127,9 +127,9 @@
             </div>
         </div>
     </div>
-    <script src="/webResources/shoppingCartResources/layout-a6323bbca7.js" type="text/javascript"></script>
-    <script src="/webResources/shoppingCartResources/jsdata.jsonp"></script>
-    <script src="/webResources/shoppingCartResources/cart-ce61f614b8.js" type="text/javascript"></script>
+<!--    <script src="/webResources/shoppingCartResources/layout-a6323bbca7.js" type="text/javascript"></script>-->
+<!--    <script src="/webResources/shoppingCartResources/jsdata.jsonp"></script>-->
+<!--    <script src="/webResources/shoppingCartResources/cart-ce61f614b8.js" type="text/javascript"></script>-->
     <div class="mz-mask hide">
         <div class="mz-dialog tips ">
             <div class="mz-dialog-header">
@@ -182,22 +182,23 @@
     var vm = new Vue({
         el:"#app",
         data:{
+            test:1,
             shoppingList:[]
         },
         mounted:function () {
-            axios.post("/phones/getPhoneList")
+            console.log("进入mounted")
+            axios.post("/phones/getShoppingList")
                 .then(function (res) {
+                    console.log(res.data.code)
                     if(res.data.code==0){
                         vm.shoppingList = res.data.data;
                     }else{
                         alert(res.data.msg);
                     }
+                    console.log("dsadsa")
                 })
-        }
-
+        },
     })
-
-
 </script>
 </body>
 </html>

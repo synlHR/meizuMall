@@ -2,7 +2,7 @@ package com.jojo.pojo;
 
 import java.io.Serializable;
 
-public class Collection implements Serializable {
+public class Collections implements Serializable {
     private Integer cid;
 
     private Integer uid;

@@ -22,6 +22,7 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     @Override
     public ResultVo getShoppingList() {
         List<Shopping> shoppingList = shoppingMapper.selectByUid(1);
+        System.out.println(shoppingList);
         for(Shopping shopping:shoppingList){
             Phone phone = phoneMapper.selectByPrimaryKey(shopping.getPid());
             shopping.setPhone(phone);

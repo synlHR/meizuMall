@@ -29,6 +29,7 @@
     from tb_phone
     where pid = #{pid,jdbcType=INTEGER}
   </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     select pid, phonename, baseprice, mid
     from tb_phone

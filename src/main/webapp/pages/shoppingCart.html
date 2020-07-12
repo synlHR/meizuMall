@@ -71,7 +71,7 @@
             </table>
             <!--        购物车内部-->
             <ul class="cart-merchant-list" >
-                <li  class="cart-merchant">
+                <li  v-for="(shopping,index) in shoppingList" class="cart-merchant">
                     <table class="cart-merchant-body">
                         <!-- 加价购 Start -->
                         <tbody>
@@ -80,26 +80,26 @@
 <!--                                选择框-->
                                 <div class="mz-checkbox checked"></div>
 <!--                                图片-->
-                                <img class="cart-product-img"  style="display: inline;" />
+                                <img :src="shopping.imageUrl" class="cart-product-img"  style="display: inline;" />
                                 <a href="https://detail.meizu.com/item/meizu17.html?skuId=12798" class="cart-product-link cart-product-info" target="_blank" data-mdesc="购物车商品位" data-mtype="click_store_cart_prod" data-bh="click_store_cart_prod">
 <!--                                    名称-->
-                                    <p class="cart-product-item-name">魅族 18</p>
+                                    <p class="cart-product-item-name">{{shopping.phone.phonename}}</p>
 
                                 </a>
                             </td>
-                            <td class="cart-col-price"> <p> <span class="cart-product-price">3619.00</span></p> </td>
+                            <td class="cart-col-price"> <p> <span class="cart-product-price">{{shopping.phone.baseprice}}</span></p> </td>
                             <td class="cart-col-number">
                                 <div class="cart-product-number-adder">
                                     <p class="cart-product-number-max"></p>
                                     <div class="mz-adder">
-                                        <button class="mz-adder-subtract disabled"></button>
+                                        <button @click="changeNum(0)" id="subButton" class="mz-adder-subtract"></button>
                                         <div class="mz-adder-num">
-                                            <input type="text" class="mz-adder-input" value="2" />
+                                            <input  v-model = "num = shopping.num" type="text" class="mz-adder-input" />
                                         </div>
-                                        <button class="mz-adder-add"></button>
+                                        <button @click="changeNum(1)" id = "addButton" class="mz-adder-add"></button>
                                     </div>
                                 </div> </td>
-                            <td class="cart-col-total"> <span class="cart-product-price total main-goods">3699.00</span></td>
+                            <td class="cart-col-total"> <span class="cart-product-price total main-goods">{{shopping.phone.baseprice*shopping.num}}</span></td>
                             <td class="cart-col-ctrl">
                                 <div class="cart-product-remove " data-mdesc="删除单个商品按钮" data-mtype="click_store_cart_del" data-bh="click_store_cart_del"></div> </td>
                         </tr>
@@ -183,21 +183,44 @@
         el:"#app",
         data:{
             test:1,
-            shoppingList:[]
+            shoppingList:[],
+            num:1
         },
         mounted:function () {
             console.log("进入mounted")
             axios.post("/phones/getShoppingList")
                 .then(function (res) {
-                    console.log(res.data.code)
                     if(res.data.code==0){
                         vm.shoppingList = res.data.data;
                     }else{
                         alert(res.data.msg);
                     }
-                    console.log("dsadsa")
                 })
         },
+        methods:{
+            changeNum:function(flag){
+                //flag是0，代表较小，否则就是增加
+                if(flag==0){
+
+
+
+
+
+                    if(this.num == 1){
+                        document.getElementById("subButton").className = "mz-adder-subtract disabled"
+                    }else{
+                        this.num = this.num - 1;
+                    }
+                }else{
+                    if(this.num == 3){
+                        document.getElementById("addButton").className = "mz-adder-add disabled"
+                    }else{
+                        this.num = this.num + 1;
+                    }
+                }
+            }
+        }
+
     })
 </script>
 </body>

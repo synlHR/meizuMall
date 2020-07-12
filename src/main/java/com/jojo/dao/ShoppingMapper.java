@@ -14,5 +14,5 @@ public interface ShoppingMapper {
 
     int updateByPrimaryKey(Shopping record);
 
-    List<Shopping> selectByUid(int i);
+    List<Shopping> selectByUid(Integer uid);
 }

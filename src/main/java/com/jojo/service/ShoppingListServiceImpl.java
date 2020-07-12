@@ -1,7 +1,9 @@
 package com.jojo.service;
 
+import com.jojo.dao.ImageMapper;
 import com.jojo.dao.PhoneMapper;
 import com.jojo.dao.ShoppingMapper;
+import com.jojo.pojo.Image;
 import com.jojo.pojo.Phone;
 import com.jojo.pojo.Shopping;
 import com.jojo.util.ResultVo;
@@ -19,13 +21,19 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     @Autowired
     private PhoneMapper phoneMapper;
 
+    @Autowired
+    private ImageMapper imageMapper;
+
     @Override
-    public ResultVo getShoppingList() {
-        List<Shopping> shoppingList = shoppingMapper.selectByUid(1);
+    public ResultVo getShoppingList(Integer uid) {
+        List<Shopping> shoppingList = shoppingMapper.selectByUid(uid);
         System.out.println(shoppingList);
         for(Shopping shopping:shoppingList){
             Phone phone = phoneMapper.selectByPrimaryKey(shopping.getPid());
             shopping.setPhone(phone);
+            List<Image> imageList = imageMapper.selectByCid(shopping.getCid());
+            String imageUrl = imageList.get(0).getUrl();
+            shopping.setImageUrl(imageUrl);
         }
         return ResultVo.success("success",shoppingList);
     }

@@ -11,6 +11,8 @@ public class OrderDetail implements Serializable {
 
     private Integer num;
 
+    private Integer aid;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getOdid() {
@@ -43,5 +45,13 @@ public class OrderDetail implements Serializable {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Integer getAid() {
+        return aid;
+    }
+
+    public void setAid(Integer aid) {
+        this.aid = aid;
     }
 }

@@ -32,4 +32,11 @@ public class PhoneController {
         System.out.println(sid + " " + num);
         shoppingListService.updateShoppingBySID(sid,num);
     }
+
+    @RequestMapping("/deleteShoppingBySID")
+    public ResultVo deleteShoppingBySID(Integer sid){
+        System.out.println(sid);
+        ResultVo resultVo = shoppingListService.deleteShoppingBySID(sid);
+        return resultVo;
+    }
 }

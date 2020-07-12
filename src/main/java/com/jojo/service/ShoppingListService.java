@@ -9,4 +9,6 @@ public interface ShoppingListService {
     public ResultVo getShoppingList(Integer uid);
 
     void updateShoppingBySID(@Param("sid")Integer sid, @Param("num")Integer num);
+
+    ResultVo deleteShoppingBySID(Integer sid);
 }

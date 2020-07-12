@@ -19,4 +19,5 @@ public interface ShoppingMapper {
     List<Shopping> selectByUid(Integer uid);
 
     void updateShoppingBySID(@Param("sid")Integer sid, @Param("num")Integer num);
+
 }

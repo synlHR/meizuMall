@@ -32,9 +32,9 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         for(Shopping shopping:shoppingList){
             Phone phone = phoneMapper.selectByPrimaryKey(shopping.getPid());
             shopping.setPhone(phone);
-            List<Image> imageList = imageMapper.selectByCid(shopping.getCid());
-            String imageUrl = imageList.get(0).getUrl();
-            shopping.setImageUrl(imageUrl);
+//            List<Image> imageList = imageMapper.selectByCid(shopping.getCid());
+//            String imageUrl = imageList.get(0).getUrl();
+//            shopping.setImageUrl(imageUrl);
         }
         return ResultVo.success("success",shoppingList);
     }
@@ -42,5 +42,11 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     @Override
     public void updateShoppingBySID(@Param("sid")Integer sid, @Param("num")Integer num) {
         shoppingMapper.updateShoppingBySID(sid,num);
+    }
+
+    @Override
+    public ResultVo deleteShoppingBySID(Integer sid) {
+        shoppingMapper.deleteByPrimaryKey(sid);
+        return ResultVo.success("删除成功");
     }
 }

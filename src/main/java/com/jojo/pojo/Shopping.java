@@ -11,6 +11,16 @@ public class Shopping implements Serializable {
 
     private Integer num;
 
+    private Phone phone;
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getSid() {

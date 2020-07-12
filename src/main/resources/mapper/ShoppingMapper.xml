@@ -33,4 +33,9 @@
     select sid, uid, pid, num
     from tb_shopping
   </select>
+
+  <select id="getShoppingListByUid" resultMap="BaseResultMap">
+    select * from tb_shopping where uid=#{uid};
+  </select>
+
 </mapper>

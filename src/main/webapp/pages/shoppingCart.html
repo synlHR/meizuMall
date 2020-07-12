@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <!-- saved from url=(0023)https://cart.meizu.com/ -->
 <html>
-
 <head>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>购物车-我的购物车</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="/js/classif.89d72ddd.js" rel="prefetch">
+    <link href="/js/app.06589e7e.js" rel="preload" as="script">
+    <link href="/js/chunk-vendors.89a26db2.js" rel="preload" as="script">
+    <script charset="utf-8" src="/js/classif.89d72ddd.js"></script>
+
     <link href="https://store.res.meizu.com/layout/img/favicon-90c2e618ff.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="https://store.res.meizu.com/layout/img/favicon-90c2e618ff.ico" rel="icon" type="image/x-icon" />
     <meta name="description" content="购物车，我的购物车" />
@@ -16,150 +22,182 @@
     <script src="//store.res.meizu.com/layout/js/html5shiv-3ed50bb69a.js" type="text/javascript"></script>
     <script src="//store.res.meizu.com/layout/js/es5-shim-50bbaee56e.js" type="text/javascript"></script>
     <![endif]-->
-    <link href="/webResources/shoppingCartResources/cart-189e8e56b7.css" rel="stylesheet" /></head>
-
+    <link href="/webResources/shoppingCartResources/cart-189e8e56b7.css" rel="stylesheet" />
+</head>
 <body>
 <script src="/webResources/shoppingCartResources/hm.js"></script>
 <script src="/webResources/shoppingCartResources/flow.js"></script>
 <script src="/webResources/shoppingCartResources/analytics-min.js"></script>
 <script>var layoutHeaderData = false;</script>
-<div class="layout-header clearfix layout-header-order login" id="layoutHeader">
-    <div class="mzcontainer">
-        <div class="layout-header-logo">
-            <a target="_blank" href="http://www.meizu.com/" class="layout-header-logo-link" alt="魅族科技" data-mdesc="购物车页头logo" data-mtype="store_cart_yt_logo" data-bh="click_store_cart_yt_logo">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAAuCAYAAAABQwQEAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQwIDc5LjE2MDQ1MSwgMjAxNy8wNS8wNi0wMTowODoyMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0FCMzYyNjc5MTE4MTFFQTkyOTE5MDU4QTAwMjNCOTEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0FCMzYyNjg5MTE4MTFFQTkyOTE5MDU4QTAwMjNCOTEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDVBNDg5NDkxMEIxMUVBOTI5MTkwNThBMDAyM0I5MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDQUIzNjI2NjkxMTgxMUVBOTI5MTkwNThBMDAyM0I5MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pg9i2hkAAAX9SURBVHja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" style="max-width:125px;margin-top:  28px;" /></a>
+<div id="app">
+    <div class="layout-header clearfix layout-header-order login">
+        <div class="mzcontainer">
+            <div class="layout-header-logo">
+                <a target="_blank" href="http://www.meizu.com/" class="layout-header-logo-link" alt="魅族科技" data-mdesc="购物车页头logo" data-mtype="store_cart_yt_logo" data-bh="click_store_cart_yt_logo"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAAAuCAYAAAABQwQEAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTQwIDc5LjE2MDQ1MSwgMjAxNy8wNS8wNi0wMTowODoyMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0FCMzYyNjc5MTE4MTFFQTkyOTE5MDU4QTAwMjNCOTEiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0FCMzYyNjg5MTE4MTFFQTkyOTE5MDU4QTAwMjNCOTEiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxRDVBNDg5NDkxMEIxMUVBOTI5MTkwNThBMDAyM0I5MSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDQUIzNjI2NjkxMTgxMUVBOTI5MTkwNThBMDAyM0I5MSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pg9i2hkAAAX9SURBVHja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" style="max-width:125px;margin-top:  28px;" /></a>
+            </div>
+            <ul class="layout-header-bread">
+                <li class="layout-header-bread-block active">购物车</li>
+                <li class="layout-header-bread-block ">确认订单</li>
+                <li class="layout-header-bread-block ">在线支付</li>
+                <li class="layout-header-bread-block ">完成</li>
+            </ul>
+            <ul class="layout-header-right">
+                <li class="layout-header-right-item"> <a class="layout-header-right-link" href="https://ordercenter.meizu.com/list/index.html" target="_blank" data-mdesc="购物车页头-我的订单" data-mtype="store_cart_yt_order" data-bh="click_store_cart_yt_order">我的订单</a></li>
+                <li class="layout-member signin"> <a class="layout-member-link" target="_blank" href="http://me.meizu.com/member/index"> <span class="layout-member-username" id="topbarUser">用户677211348</span>的商城 <i class="layout-member-triangle"></i></a>
+                    <ul class="layout-member-downmenu">
+                        <li class="layout-member-downmenu-item"> <a class="layout-member-downmenu-link" data-mdesc="我的商城下拉框1" data-mtype="store_index_yt_my_1" data-bh="click_store_index_yt_my_1" target="_blank" href="https://me.meizu.com/member/address/index">地址管理</a></li>
+                        <li class="layout-member-downmenu-item"> <a class="layout-member-downmenu-link" data-mdesc="页头-收藏" data-mtype="store_index_yt_collect" data-bh="click_store_index_yt_collect" target="_blank" href="https://me.meizu.com/member/favorite/index">我的收藏</a></li>
+                    </ul> </li>
+            </ul>
         </div>
-        <ul class="layout-header-bread">
-            <li class="layout-header-bread-block active">购物车</li>
-            <li class="layout-header-bread-block ">确认订单</li>
-            <li class="layout-header-bread-block ">在线支付</li>
-            <li class="layout-header-bread-block ">完成</li></ul>
-        <ul class="layout-header-right">
-            <li class="layout-header-right-item">
-                <a class="layout-header-right-link" href="https://ordercenter.meizu.com/list/index.html" target="_blank" data-mdesc="购物车页头-我的订单" data-mtype="store_cart_yt_order" data-bh="click_store_cart_yt_order">我的订单</a></li>
-            <li class="layout-member signin">
-                <a class="layout-member-link" target="_blank" href="http://me.meizu.com/member/index">
-                    <span class="layout-member-username" id="topbarUser">用户677211348</span>的商城
-                    <i class="layout-member-triangle"></i></a>
-                <ul class="layout-member-downmenu">
-                    <li class="layout-member-downmenu-item">
-                        <a class="layout-member-downmenu-link" data-mdesc="我的商城下拉框1" data-mtype="store_index_yt_my_1" data-bh="click_store_index_yt_my_1" target="_blank" href="https://me.meizu.com/member/address/index">地址管理</a></li>
-                    <li class="layout-member-downmenu-item">
-                        <a class="layout-member-downmenu-link" data-mdesc="页头-收藏" data-mtype="store_index_yt_collect" data-bh="click_store_index_yt_collect" target="_blank" href="https://me.meizu.com/member/favorite/index">我的收藏</a></li>
-                </ul>
-            </li>
-        </ul>
     </div>
-</div>
-<div class="cart" id="cart">
-<!--    购物车上部-->
-    <div class="mzcontainer">
-        <table class="cart-header">
-            <tbody>
-            <tr>
-                <td class="cart-col-select">
+    <div class="cart">
+        <!--    购物车上部-->
+        <div class="mzcontainer">
+            <table class="cart-header">
+                <tbody>
+                <tr>
+                    <td class="cart-col-select">
+                        <div class="cart-select-all JSelectAll" data-mdesc="全选按钮" data-mtype="store_cart_all" data-bh="click_store_cart_all">
+                            <div class="mz-checkbox checked"></div>
+                            <span class="cart-select-title">全选</span>
+                        </div> </td>
+                    <td class="cart-col-price">单价(元)</td>
+                    <td class="cart-col-number">数量</td>
+                    <td class="cart-col-total">小计(元)</td>
+                    <td class="cart-col-ctrl" id="J-cartHearCtrl">编辑</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--        购物车内部-->
+            <ul class="cart-merchant-list" >
+                <li  class="cart-merchant">
+                    <table class="cart-merchant-body">
+                        <!-- 加价购 Start -->
+                        <tbody>
+                        <tr class="cart-product hasTheBinder">
+                            <td class="cart-col-select">
+<!--                                选择框-->
+                                <div class="mz-checkbox checked"></div>
+<!--                                图片-->
+                                <img class="cart-product-img" src="/webResources/shoppingCartResources/Cgbj0F6zwMuANEeWAAw6yQFAJXM097.png@120x120.png" style="display: inline;" />
+                                <a href="https://detail.meizu.com/item/meizu17.html?skuId=12798" class="cart-product-link cart-product-info" target="_blank" data-mdesc="购物车商品位" data-mtype="click_store_cart_prod" data-bh="click_store_cart_prod">
+<!--                                    名称-->
+                                    <p class="cart-product-item-name">魅族 18</p>
+
+                                </a>
+                            </td>
+                            <td class="cart-col-price"> <p> <span class="cart-product-price">3619.00</span></p> </td>
+                            <td class="cart-col-number">
+                                <div class="cart-product-number-adder">
+                                    <p class="cart-product-number-max"></p>
+                                    <div class="mz-adder">
+                                        <button class="mz-adder-subtract disabled"></button>
+                                        <div class="mz-adder-num">
+                                            <input type="text" class="mz-adder-input" value="2" />
+                                        </div>
+                                        <button class="mz-adder-add"></button>
+                                    </div>
+                                </div> </td>
+                            <td class="cart-col-total"> <span class="cart-product-price total main-goods">3699.00</span></td>
+                            <td class="cart-col-ctrl">
+                                <div class="cart-product-remove " data-mdesc="删除单个商品按钮" data-mtype="click_store_cart_del" data-bh="click_store_cart_del"></div> </td>
+                        </tr>
+                        </tbody>
+                    </table> </li>
+            </ul>
+        </div>
+        <!--    购物车下部-->
+        <div class="cart-footer">
+            <div class="mzcontainer">
+                <div class="cart-footer-left">
                     <div class="cart-select-all JSelectAll" data-mdesc="全选按钮" data-mtype="store_cart_all" data-bh="click_store_cart_all">
                         <div class="mz-checkbox checked"></div>
-                        <span class="cart-select-title">全选</span></div>
-                </td>
-                <td class="cart-col-price">单价(元)</td>
-                <td class="cart-col-number">数量</td>
-                <td class="cart-col-total">小计(元)</td>
-                <td class="cart-col-ctrl" id="J-cartHearCtrl">编辑</td></tr>
-            </tbody>
-        </table>
-<!--        购物车内部-->
-        <ul class="cart-merchant-list" id="merchantList">
-            <li class="cart-merchant">
-                <table class="cart-merchant-body">
-                    <!-- 加价购 Start -->
-                    <tbody>
-                    <tr class="cart-product hasTheBinder">
-                        <td class="cart-col-select">
-                            <div class="mz-checkbox checked"></div>
-                                <img class="cart-product-img"  src="/webResources/shoppingCartResources/Cgbj0F6zwMuANEeWAAw6yQFAJXM097.png@120x120.png" style="display: inline;" />
-                            <a href="https://detail.meizu.com/item/meizu17.html?skuId=12798" class="cart-product-link cart-product-info" target="_blank" data-mdesc="购物车商品位" data-mtype="click_store_cart_prod" data-bh="click_store_cart_prod">
-                                <p class="cart-product-item-name">魅族 18</p>
-                                <p class="cart-product-desc">全网通公开版 AG梦幻独角兽 8+128GB</p></a>
-                        </td>
-                        <td class="cart-col-price">
-                            <p>
-                                <span class="cart-product-price">3619.00</span></p>
-                        </td>
-                        <td class="cart-col-number">
-                            <div class="cart-product-number-adder">
-                                <p class="cart-product-number-max"></p>
-                                <div class="mz-adder">
-                                    <button class="mz-adder-subtract disabled"></button>
-                                    <div class="mz-adder-num">
-                                        <input type="text" class="mz-adder-input" value="2" /></div>
-                                    <button class="mz-adder-add"></button>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="cart-col-total">
-                            <span class="cart-product-price total main-goods">3699.00</span></td>
-                        <td class="cart-col-ctrl">
-                            <div class="cart-product-remove " data-mdesc="删除单个商品按钮" data-mtype="click_store_cart_del" data-bh="click_store_cart_del"></div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </li>
-        </ul>
-    </div>
-<!--    购物车下部-->
-    <div class="cart-footer" id="cartFooter">
-        <div class="mzcontainer">
-            <div class="cart-footer-left">
-                <div class="cart-select-all JSelectAll" data-mdesc="全选按钮" data-mtype="store_cart_all" data-bh="click_store_cart_all">
-                    <div class="mz-checkbox checked"></div>
-                    <span class="cart-select-title">全选</span></div>
-                <span class="cart-remove-selected" data-mdesc="删除选中商品" data-mtype="store_cart_batch" data-bh="click_store_cart_batch" id="removeSelected">删除选中的商品</span>
-                <span class="cart-footer-count">共
-              <span class="cart-footer-num" id="totalCount">1</span>件商品， 已选择
-              <span class="cart-footer-num blue" id="totalSelectedCount">1</span>件</span></div>
-            <div class="cart-footer-right">
-            <span class="cart-footer-sum">已优惠
-              <span class="cart-footer-num red" id="totalDiscount">0.00</span>元， 合计(不含运费)：
-              <span class="cart-footer-total" id="totalPrice">3699.00</span></span>
-                <div class="mz-btn success to-order-btn" id="cartSubmit" data-mdesc="去结算按钮" data-mtype="store_cart_checkout" data-bh="click_store_cart_checkout">去结算</div></div>
-        </div>
-    </div>
-</div>
-<script src="/webResources/shoppingCartResources/layout-a6323bbca7.js" type="text/javascript"></script>
-<script src="/webResources/shoppingCartResources/jsdata.jsonp"></script>
-<script src="/webResources/shoppingCartResources/cart-ce61f614b8.js" type="text/javascript"></script>
-<div class="mz-mask hide">
-    <div class="mz-dialog tips ">
-        <div class="mz-dialog-header">
-            <div class="mz-dialog-title">提示</div>
-            <div class="mz-dialog-close"></div>
-        </div>
-        <div class="mz-dialog-main">
-            <div class="mz-dialog-warp">
-                <div class="mz-dialog-content"></div>
+                        <span class="cart-select-title">全选</span>
+                    </div>
+                    <span class="cart-remove-selected" data-mdesc="删除选中商品" data-mtype="store_cart_batch" data-bh="click_store_cart_batch" id="removeSelected">删除选中的商品</span>
+                    <span class="cart-footer-count">共 <span class="cart-footer-num" id="totalCount">1</span>件商品， 已选择 <span class="cart-footer-num blue" id="totalSelectedCount">1</span>件</span>
+                </div>
+                <div class="cart-footer-right">
+                    <span class="cart-footer-sum">已优惠 <span class="cart-footer-num red" id="totalDiscount">0.00</span>元， 合计(不含运费)： <span class="cart-footer-total" id="totalPrice">3699.00</span></span>
+                    <div class="mz-btn success to-order-btn" id="cartSubmit" data-mdesc="去结算按钮" data-mtype="store_cart_checkout" data-bh="click_store_cart_checkout">
+                        去结算
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="mz-dialog-bottom">
-            <div class="mz-btn success">确定</div></div>
+    </div>
+    <script src="/webResources/shoppingCartResources/layout-a6323bbca7.js" type="text/javascript"></script>
+    <script src="/webResources/shoppingCartResources/jsdata.jsonp"></script>
+    <script src="/webResources/shoppingCartResources/cart-ce61f614b8.js" type="text/javascript"></script>
+    <div class="mz-mask hide">
+        <div class="mz-dialog tips ">
+            <div class="mz-dialog-header">
+                <div class="mz-dialog-title">
+                    提示
+                </div>
+                <div class="mz-dialog-close"></div>
+            </div>
+            <div class="mz-dialog-main">
+                <div class="mz-dialog-warp">
+                    <div class="mz-dialog-content"></div>
+                </div>
+            </div>
+            <div class="mz-dialog-bottom">
+                <div class="mz-btn success">
+                    确定
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mz-mask hide">
+        <div class="mz-dialog dialog ">
+            <div class="mz-dialog-header">
+                <div class="mz-dialog-title">
+                    删除
+                </div>
+                <div class="mz-dialog-close"></div>
+            </div>
+            <div class="mz-dialog-main">
+                <div class="mz-dialog-warp">
+                    <div class="mz-dialog-content">
+                        您确定要删除该商品吗？
+                    </div>
+                </div>
+            </div>
+            <div class="mz-dialog-bottom">
+                <div class="mz-btn cancel">
+                    删除
+                </div>
+                <div class="mz-btn success">
+                    取消
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="mz-mask hide">
-    <div class="mz-dialog dialog ">
-        <div class="mz-dialog-header">
-            <div class="mz-dialog-title">删除</div>
-            <div class="mz-dialog-close"></div>
-        </div>
-        <div class="mz-dialog-main">
-            <div class="mz-dialog-warp">
-                <div class="mz-dialog-content">您确定要删除该商品吗？</div></div>
-        </div>
-        <div class="mz-dialog-bottom">
-            <div class="mz-btn cancel">删除</div>
-            <div class="mz-btn success">取消</div></div>
-    </div>
-</div>
-</body>
+<script type="text/javascript" src="/js/vue.js"></script>
+<script type="text/javascript" src="/js/axios.min.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            shoppingList:[]
+        },
+        mounted:function () {
+            axios.post("/phones/getPhoneList")
+                .then(function (res) {
+                    if(res.data.code==0){
+                        vm.shoppingList = res.data.data;
+                    }else{
+                        alert(res.data.msg);
+                    }
+                })
+        }
 
+    })
+
+
+</script>
+</body>
 </html>

@@ -11,6 +11,28 @@ public class OrderDetail implements Serializable {
 
     private Integer num;
 
+    private Integer aid;
+
+    private Phone phone;
+
+    private Memory memory;
+
+    public Memory getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Memory memory) {
+        this.memory = memory;
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getOdid() {
@@ -43,5 +65,13 @@ public class OrderDetail implements Serializable {
 
     public void setNum(Integer num) {
         this.num = num;
+    }
+
+    public Integer getAid() {
+        return aid;
+    }
+
+    public void setAid(Integer aid) {
+        this.aid = aid;
     }
 }

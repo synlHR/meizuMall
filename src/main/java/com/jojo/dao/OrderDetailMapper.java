@@ -13,4 +13,8 @@ public interface OrderDetailMapper {
     List<OrderDetail> selectAll();
 
     int updateByPrimaryKey(OrderDetail record);
+
+    void addOrderDetail(OrderDetail orderDetail);
+
+    List<OrderDetail> getOrderDetailList(Integer oid);
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jojo.dao.ImageMapper" >
+  <resultMap id="BaseResultMap" type="com.jojo.pojo.Image" >
+    <id column="iid" property="iid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_image
+    where iid = #{iid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jojo.pojo.Image" >
+    insert into tb_image (iid, cid, url
+      )
+    values (#{iid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Image" >
+    update tb_image
+    set cid = #{cid,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR}
+    where iid = #{iid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select iid, cid, url
+    from tb_image
+    where iid = #{iid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select iid, cid, url
+    from tb_image
+  </select>
+  <select id="selectByCid" resultMap="BaseResultMap" >
+    select * from tb_image where cid = #{cid}
+  </select>
+</mapper>

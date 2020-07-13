@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>全国城市三级联动</title>
+    <style>
+        .select_style{
+            width:120px;height: 34px; border-radius:5%;
+        }
+    </style>
+</head>
+<body>
+<h1>全国城市三级联动</h1>
+<select id="s_province" name="s_province" class="select_style"></select>
+<select id="s_city" name="s_city" class="select_style">
+    <option value="地级市">地级市</option>
+</select>
+<select id="s_county" name="s_county" class="select_style">
+    <option value="市、县级市">市、县级市</option>
+</select>
+<script type="text/javascript" src="/js/area.js" ></script>
+<script type="text/javascript">_init_area();</script>
+</body>
+</html>

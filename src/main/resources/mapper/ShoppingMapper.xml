@@ -6,6 +6,7 @@
     <result column="uid" jdbcType="INTEGER" property="uid" />
     <result column="pid" jdbcType="INTEGER" property="pid" />
     <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="cid" jdbcType="INTEGER" property="cid" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_shopping
@@ -13,29 +14,38 @@
   </delete>
   <insert id="insert" parameterType="com.jojo.pojo.Shopping">
     insert into tb_shopping (sid, uid, pid, 
-      num)
+      num, cid)
     values (#{sid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, 
-      #{num,jdbcType=INTEGER})
+      #{num,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Shopping">
     update tb_shopping
     set uid = #{uid,jdbcType=INTEGER},
       pid = #{pid,jdbcType=INTEGER},
-      num = #{num,jdbcType=INTEGER}
+      num = #{num,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER}
     where sid = #{sid,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select sid, uid, pid, num
+    select sid, uid, pid, num, cid
     from tb_shopping
     where sid = #{sid,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select sid, uid, pid, num
+    select sid, uid, pid, num, cid
     from tb_shopping
   </select>
 
-  <select id="getShoppingListByUid" resultMap="BaseResultMap">
-    select * from tb_shopping where uid=#{uid};
+  <select id="selectByUid" resultMap="BaseResultMap">
+    select * from tb_shopping where uid = #{uid}
   </select>
+
+  <select id="selectByCid" resultMap="BaseResultMap">
+    select * from tb_shopping where uid = #{uid}
+  </select>
+
+  <update id="updateShoppingBySID">
+    update tb_shopping set num = #{num} where sid = #{sid}
+  </update>
 
 </mapper>

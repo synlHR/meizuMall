@@ -1,20 +1,18 @@
 package com.jojo.controller;
 
 
-import com.jojo.dao.ShoppingMapper;
-import com.jojo.pojo.Shopping;
+import com.jojo.pojo.Image;
 import com.jojo.service.ShoppingListService;
 import com.jojo.util.ResultVo;
-import org.apache.commons.collections.map.PredicatedSortedMap;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.sound.midi.Soundbank;
-
-@Controller//即是controller,又能返回json对象
+@RestController//即是controller,又能返回json对象
 @RequestMapping("/phones")
 public class PhoneController {
 
@@ -22,11 +20,23 @@ public class PhoneController {
     private ShoppingListService shoppingListService;
 
     @RequestMapping("/getShoppingList")
-    @ResponseBody
     public ResultVo getPhoneList(){
-        System.out.println("dasdsad");
-        ResultVo resultVo = shoppingListService.getShoppingList();
+        Integer uid = 1;
+        ResultVo resultVo = shoppingListService.getShoppingList(uid);
         System.out.println(resultVo);
+        return resultVo;
+    }
+
+    @RequestMapping("/updateShoppingBySID")
+    public void updateShoppingBySID(@Param("sid")Integer sid,@Param("num")Integer num){
+        System.out.println(sid + " " + num);
+        shoppingListService.updateShoppingBySID(sid,num);
+    }
+
+    @RequestMapping("/deleteShoppingBySID")
+    public ResultVo deleteShoppingBySID(Integer sid){
+        System.out.println(sid);
+        ResultVo resultVo = shoppingListService.deleteShoppingBySID(sid);
         return resultVo;
     }
 }

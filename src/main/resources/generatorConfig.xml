@@ -57,7 +57,7 @@
 <!--        </table>-->
 
 
-<!--        <table tableName="tb_phone" domainObjectName="Phone"-->
+<!--        <table tableName="tb_phones" domainObjectName="Phone"-->
 <!--               enableCountByExample="false" enableUpdateByExample="false"-->
 <!--               enableDeleteByExample="false" enableSelectByExample="false"-->
 <!--               selectByExampleQueryId="false">-->
@@ -93,13 +93,13 @@
 <!--               selectByExampleQueryId="false">-->
 <!--        </table>-->
 
-<!--        <table tableName="tb_order" domainObjectName="Order"-->
+<!--        <table tableName="tb_orders" domainObjectName="Order"-->
 <!--               enableCountByExample="false" enableUpdateByExample="false"-->
 <!--               enableDeleteByExample="false" enableSelectByExample="false"-->
 <!--               selectByExampleQueryId="false">-->
 <!--        </table>-->
 
-<!--        <table tableName="tb_order_detail" domainObjectName="OrderDetail"-->
+<!--        <table tableName="tb_orders_detail" domainObjectName="OrderDetail"-->
 <!--               enableCountByExample="false" enableUpdateByExample="false"-->
 <!--               enableDeleteByExample="false" enableSelectByExample="false"-->
 <!--               selectByExampleQueryId="false">-->
@@ -111,6 +111,10 @@
 <!--               selectByExampleQueryId="false">-->
 <!--        </table>-->
 
-
+<!--        <table tableName="tb_color" domainObjectName="Color"-->
+<!--               enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false">-->
+<!--        </table>-->
     </context>
 </generatorConfiguration>

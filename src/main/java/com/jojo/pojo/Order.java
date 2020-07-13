@@ -12,8 +12,6 @@ public class Order implements Serializable {
 
     private Double totalprice;
 
-    private Integer aid;
-
     private static final long serialVersionUID = 1L;
 
     public Integer getOid() {
@@ -46,13 +44,5 @@ public class Order implements Serializable {
 
     public void setTotalprice(Double totalprice) {
         this.totalprice = totalprice;
-    }
-
-    public Integer getAid() {
-        return aid;
-    }
-
-    public void setAid(Integer aid) {
-        this.aid = aid;
     }
 }

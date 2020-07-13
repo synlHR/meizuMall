@@ -1,37 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jojo.dao.PhoneMapper">
-  <resultMap id="BaseResultMap" type="com.jojo.pojo.Phone">
-    <id column="pid" jdbcType="INTEGER" property="pid" />
-    <result column="phonename" jdbcType="VARCHAR" property="phonename" />
-    <result column="baseprice" jdbcType="DOUBLE" property="baseprice" />
-    <result column="mid" jdbcType="INTEGER" property="mid" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jojo.dao.PhoneMapper" >
+  <resultMap id="BaseResultMap" type="com.jojo.pojo.Phone" >
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="phonename" property="phonename" jdbcType="VARCHAR" />
+    <result column="baseprice" property="baseprice" jdbcType="DOUBLE" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from tb_phone
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_phones
     where pid = #{pid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.jojo.pojo.Phone">
-    insert into tb_phone (pid, phonename, baseprice, 
-      mid)
+  <insert id="insert" parameterType="com.jojo.pojo.Phone" >
+    insert into tb_phones (pid, phonename, baseprice, 
+      mid, image, title)
     values (#{pid,jdbcType=INTEGER}, #{phonename,jdbcType=VARCHAR}, #{baseprice,jdbcType=DOUBLE}, 
-      #{mid,jdbcType=INTEGER})
+      #{mid,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Phone">
-    update tb_phone
+  <update id="updateByPrimaryKey" parameterType="com.jojo.pojo.Phone" >
+    update tb_phones
     set phonename = #{phonename,jdbcType=VARCHAR},
       baseprice = #{baseprice,jdbcType=DOUBLE},
-      mid = #{mid,jdbcType=INTEGER}
+      mid = #{mid,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR}
     where pid = #{pid,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select pid, phonename, baseprice, mid
-    from tb_phone
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select pid, phonename, baseprice, mid, image, title
+    from tb_phones
     where pid = #{pid,jdbcType=INTEGER}
   </select>
-
-  <select id="selectAll" resultMap="BaseResultMap">
-    select pid, phonename, baseprice, mid
-    from tb_phone
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select pid, phonename, baseprice, mid, image, title
+    from tb_phones
   </select>
 </mapper>

@@ -43,5 +43,9 @@
     select aid, uid, name, tel, province, city, country, addres_detail
     from tb_address
   </select>
+  <select id="selectByUid" resultMap="BaseResultMap">
+    select * from tb_address
+    where uid = #{uid}
+  </select>
 
 </mapper>

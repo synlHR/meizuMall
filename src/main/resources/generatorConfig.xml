@@ -116,5 +116,15 @@
 <!--               enableDeleteByExample="false" enableSelectByExample="false"-->
 <!--               selectByExampleQueryId="false">-->
 <!--        </table>-->
+<!--                <table tableName="tb_singer" domainObjectName="Singer"-->
+<!--                       enableCountByExample="false" enableUpdateByExample="false"-->
+<!--                       enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--                       selectByExampleQueryId="false">-->
+<!--                </table>-->
+<!--        <table tableName="tb_album" domainObjectName="Album"-->
+<!--               enableCountByExample="false" enableUpdateByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               selectByExampleQueryId="false">-->
+<!--        </table>-->
     </context>
 </generatorConfiguration>

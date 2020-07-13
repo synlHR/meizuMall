@@ -1,5 +1,6 @@
 package com.jojo.controller;
 
+import com.jojo.pojo.Address;
 import com.jojo.pojo.OrderAddVo;
 import com.jojo.service.OrderService;
 import com.jojo.util.ResultVo;
@@ -43,4 +44,16 @@ public class OrderController {
         return resultVo;
     }
 
+    @RequestMapping("/updateAddressByAid")
+    public ResultVo updateAddressByAid(@RequestBody Address address){
+        System.out.println(address.toString());
+        ResultVo resultVo = orderService.updateAddressByAid(address);
+        return resultVo;
+    }
+
+    @RequestMapping("/addNewAddress")
+    public ResultVo addNewAddress(@RequestBody Address address){
+        ResultVo resultVo = orderService.addNewAddress(address);
+        return resultVo;
+    }
 }

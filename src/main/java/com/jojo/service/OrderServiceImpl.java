@@ -6,6 +6,7 @@ import com.jojo.util.ResultVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -73,8 +74,19 @@ public class OrderServiceImpl implements OrderService {
         for(OrderDetail orderDetail:orderDetailList){
             Phone phone = phoneMapper.selectByPrimaryKey(orderDetail.getPid());
             orderDetail.setPhone(phone);
-
         }
         return ResultVo.success("success",orderDetailList);
+    }
+
+    @Override
+    public ResultVo updateAddressByAid(Address address) {
+        addressMapper.updateAddressByAid(address);
+        return ResultVo.success("更新成功");
+    }
+
+    @Override
+    public ResultVo addNewAddress(Address address) {
+        addressMapper.AddNewAddress(address);
+        return ResultVo.success("添加成功");
     }
 }

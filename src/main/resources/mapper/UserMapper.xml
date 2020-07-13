@@ -35,4 +35,12 @@
     select * from tb_user
     where username = #{username}
   </select>
+  <update id="updatePasswordById">
+    update tb_user set password = #{password}
+    where username = #{username}
+  </update>
+  <update id="updateUsername">
+    update tb_user set username = #{username}
+    where uid = #{uid}
+  </update>
 </mapper>

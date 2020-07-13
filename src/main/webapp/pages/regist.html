@@ -214,6 +214,7 @@
                     // window.location.href = "/pages/regist.html";
                     // console.log(res.data.data);
                     if (res.data.code == 0) {
+                        alert(res.data.data);
                         that.rightVerifyCode = res.data.data;
                         window.sessionStorage.setItem("rightVerifyCode", res.data.data);
                     } else {

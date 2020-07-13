@@ -1,5 +1,4 @@
-package com.jojo.util;
-//接口类型：互亿无线触发短信接口，支持发送验证码短信、订单通知短信等。
+package com.jojo.util;//接口类型：互亿无线触发短信接口，支持发送验证码短信、订单通知短信等。
 // 账户注册：请通过该地址开通账户http://sms.ihuyi.com/register.html
 // 注意事项：
 //（1）调试期间，请用默认的模板进行测试，默认模板详见接口文档；
@@ -18,11 +17,14 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
+
 public class VerifyCode {
 
     private static String Url = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";
 
     public static Integer getVerifyCode(String telPhone){
+
+        System.out.println(telPhone);
 
         HttpClient client = new HttpClient();
         PostMethod method = new PostMethod(Url);
@@ -37,6 +39,8 @@ public class VerifyCode {
         NameValuePair[] data = {//提交短信
                 new NameValuePair("account", "C28460977"), //查看用户名是登录用户中心->验证码短信->产品总览->APIID
                 new NameValuePair("password", "9525eee0905a1c16cbe0ee4dbae13620"),  //查看密码请登录用户中心->验证码短信->产品总览->APIKEY
+                //我的：APIID：C28460977   9525eee0905a1c16cbe0ee4dbae13620
+                //qp: C24081165   7fe8fa81145032804cfee40dcd353109
                 //new NameValuePair("password", util.StringUtil.MD5Encode("密码")),
                 new NameValuePair("mobile", telPhone),
                 new NameValuePair("content", content),
@@ -46,9 +50,9 @@ public class VerifyCode {
         try {
             client.executeMethod(method);
 
-            String SubmitResult = method.getResponseBodyAsString();
+            String SubmitResult =method.getResponseBodyAsString();
 
-            System.out.println(SubmitResult);
+            //System.out.println(SubmitResult);
 
             Document doc = DocumentHelper.parseText(SubmitResult);
             Element root = doc.getRootElement();

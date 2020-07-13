@@ -2,6 +2,7 @@ package com.jojo.controller;
 
 import com.jojo.pojo.User;
 import com.jojo.service.UserService;
+import com.jojo.util.Md5Util;
 import com.jojo.util.ResultVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,30 +42,14 @@ public class UserController {
     }
 
     @RequestMapping("/getVerifyCode")
-    public ResultVo getVerifyCode(String telPhone,Integer loginOrRegist){
-        System.out.println(telPhone);
-        if("".equals(telPhone) || telPhone == null){
-            return ResultVo.error("手机号不能为空");
-        }else if(telPhone.length() != 11){
-            return ResultVo.error("手机号输入有误，请检查输入");
-        }
-        if(loginOrRegist == 1){ //代表登录时验证码
-            User user = userService.selectByUsername(telPhone);
-            if(user == null){
-                return ResultVo.error("账号不存在,请先注册");
-            }
-        }
-        Integer verifyCode = (int)((Math.random()*9+1)*100000);
-        System.out.println(verifyCode);
-        return ResultVo.success("成功",verifyCode);
-
+    public ResultVo getVerifyCode(String telPhone,Integer loginOrRegist,HttpSession session){
+//        System.out.println(telPhone+"---"+loginOrRegist);
+        return userService.getVerifyCode(telPhone,loginOrRegist,session);
     }
 
     @RequestMapping("/login")
     public ResultVo login(@RequestBody User loginUser,HttpSession session){
-//        System.out.println(loginUser.getUsername()+"---"+loginUser.getPassword());
-        session.setAttribute("loginUser",loginUser);
-        ResultVo resultVo = userService.login(loginUser);
+        ResultVo resultVo = userService.login(loginUser,session);
         return resultVo;
     }
 
@@ -73,5 +58,21 @@ public class UserController {
         System.out.println(registUser.getUsername()+"---"+registUser.getPassword());
         ResultVo resultVo = userService.regist(registUser);
         return resultVo;
+    }
+
+    @RequestMapping("/testPassword")
+    public ResultVo testPassword(String password, HttpSession session){
+        return userService.testPassword(password,session);
+
+    }
+
+    @RequestMapping("/changePassword")
+    public ResultVo changePassword(String password,HttpSession session){
+        return userService.changePassword(password,session);
+    }
+
+    @RequestMapping("/updateUsername")
+    public ResultVo updateUsername(String username,HttpSession session){
+        return userService.updateUsername(username,session);
     }
 }

@@ -20,4 +20,5 @@ public interface ShoppingMapper {
 
     void updateShoppingBySID(@Param("sid")Integer sid, @Param("num")Integer num);
 
+
 }

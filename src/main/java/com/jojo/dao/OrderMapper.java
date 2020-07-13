@@ -13,4 +13,6 @@ public interface OrderMapper {
     List<Order> selectAll();
 
     int updateByPrimaryKey(Order record);
+
+    void addOrder(Order order);
 }

@@ -31,5 +31,7 @@
     select mid, memoryname, addprice
     from tb_memory
   </select>
-
+  <select id="selectMemoryByMID" resultMap="BaseResultMap">
+    select * from tb_memory where mid = #{mid}
+  </select>
 </mapper>

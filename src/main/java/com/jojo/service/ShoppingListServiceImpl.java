@@ -1,9 +1,11 @@
 package com.jojo.service;
 
 import com.jojo.dao.ImageMapper;
+import com.jojo.dao.MemoryMapper;
 import com.jojo.dao.PhoneMapper;
 import com.jojo.dao.ShoppingMapper;
 import com.jojo.pojo.Image;
+import com.jojo.pojo.Memory;
 import com.jojo.pojo.Phone;
 import com.jojo.pojo.Shopping;
 import com.jojo.util.ResultVo;
@@ -25,6 +27,9 @@ public class ShoppingListServiceImpl implements ShoppingListService {
     @Autowired
     private ImageMapper imageMapper;
 
+    @Autowired
+    private MemoryMapper memoryMapper;
+
     @Override
     public ResultVo getShoppingList(Integer uid) {
         List<Shopping> shoppingList = shoppingMapper.selectByUid(uid);
@@ -32,10 +37,13 @@ public class ShoppingListServiceImpl implements ShoppingListService {
         for(Shopping shopping:shoppingList){
             Phone phone = phoneMapper.selectByPrimaryKey(shopping.getPid());
             shopping.setPhone(phone);
-//            List<Image> imageList = imageMapper.selectByCid(shopping.getCid());
-//            String imageUrl = imageList.get(0).getUrl();
-//            shopping.setImageUrl(imageUrl);
+            Memory memory = memoryMapper.selectMemoryByMID(phone.getMid());
+            shopping.setMemory(memory);
+            shopping.setSubId("SubDiv"+shopping.getSid());
+            shopping.setAddId("AddDiv"+shopping.getSid());
+            System.out.println(shopping.getAddId());
         }
+
         return ResultVo.success("success",shoppingList);
     }
 

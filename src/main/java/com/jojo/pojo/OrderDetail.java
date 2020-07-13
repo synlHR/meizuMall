@@ -13,6 +13,26 @@ public class OrderDetail implements Serializable {
 
     private Integer aid;
 
+    private Phone phone;
+
+    private Memory memory;
+
+    public Memory getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Memory memory) {
+        this.memory = memory;
+    }
+
+    public Phone getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getOdid() {

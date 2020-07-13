@@ -13,4 +13,6 @@ public interface MemoryMapper {
     List<Memory> selectAll();
 
     int updateByPrimaryKey(Memory record);
+
+    Memory selectMemoryByMID(Integer mid);
 }

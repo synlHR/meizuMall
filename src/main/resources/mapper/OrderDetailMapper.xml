@@ -35,4 +35,13 @@
     select odid, oid, pid, num, aid
     from tb_orders_detail
   </select>
+  <insert id="addOrderDetail">
+     insert into tb_orders_detail (oid, pid,
+      num)
+    values (#{oid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER},
+      #{num,jdbcType=INTEGER})
+  </insert>
+  <select id="getOrderDetailList" resultMap="BaseResultMap">
+    select  * from tb_orders_detail where oid=#{oid};
+  </select>
 </mapper>

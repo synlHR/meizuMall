@@ -15,6 +15,36 @@ public class Shopping implements Serializable {
 
     private Phone phone;
 
+    private Memory memory;
+
+    private String subId;
+
+    private String addId;
+
+    public String getSubId() {
+        return subId;
+    }
+
+    public void setSubId(String subId) {
+        this.subId = subId;
+    }
+
+    public String getAddId() {
+        return addId;
+    }
+
+    public void setAddId(String addId) {
+        this.addId = addId;
+    }
+
+    public Memory getMemory() {
+        return memory;
+    }
+
+    public void setMemory(Memory memory) {
+        this.memory = memory;
+    }
+
     private String imageUrl;
 
     public String getImageUrl() {

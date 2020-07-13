@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0182)https://login.flyme.cn/vCodeLogin?appuri=&useruri=http%3A%2F%2Fstore.meizu.com%2Fmember%2Flogin.htm%3Fuseruri%3Dhttp%3A%2F%2Fwww.meizu.com&sid=unionlogin&service=store&autodirct=true -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=11;IE=10;IE=9;IE=8;"/>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+    <meta name="description" content="欢迎登录和注册 Flyme 账号，您可以体验手机云服务功能，包括：在线下载应用，同步手机数据和查找手机等，让您的手机管理更加智能。"/>
+    <meta name="keywords" content="魅族  meizu 登录flyme 云服务  查找手机  充值账号  MX M9 MX2"/>
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title> Flyme 账号 - 登录</title>
+    <link href="/webResources/loginVerifyResources/base.css" type="text/css" rel="stylesheet"/>
+    <link href="/webResources/loginVerifyResources/cycode.css" rel="stylesheet"/>
+    <link href="/webResources/loginVerifyResources/vCodeLogin.css" type="text/css" rel="stylesheet"/>
+    <!--阿里pt.js-->
+    <!--<script src="//g.alicdn.com/sd/pointman/js/pt.js" data-app="ewogICJjb21tb24iOiB7CiAgICAiYXBwa2V5IjogIlJIVjIiLAogICAgInVzZUN1c3RvbVRva2VuIjogZmFsc2UsCiAgICAic2NlbmUiOiAiTG9naW4iLAogICAgImZvcmVpZ24iOiAwCiAgfSwKICAidWFiIjogewogICAgIkV4VGFyZ2V0IjogWwogICAgICAicHdkaWQiCiAgICBdLAogICAgInVzZUN1c3RvbVRva2VuIjogZmFsc2UsCiAgICAiRm9ybUlkIjogIm15X2Zvcm0iLAogICAgIkxvZ1ZhbCI6ICJ1YV9sb2ciLAogICAgIlNlbmRJbnRlcnZhbCI6IDIwLAogICAgIlNlbmRNZXRob2QiOiAzLAogICAgIk1heE1DTG9nIjogMTUwLAogICAgIk1heEtTTG9nIjogMTUwLAogICAgIk1heE1QTG9nIjogMTUwLAogICAgIk1heEdQTG9nIjogNSwKICAgICJNYXhUQ0xvZyI6IDE1MCwKICAgICJHUEludGVydmFsIjogNTAsCiAgICAiTVBJbnRlcnZhbCI6IDUwLAogICAgIk1heEZvY3VzTG9nIjogMTUwLAogICAgImlzU2VuZEVycm9yIjogMSwKICAgICJJbWdVcmwiOiAiLy9jZmQuYWxpeXVuLmNvbS9jb2xsZWN0b3IvYW5hbHl6ZS5qc29ucCIsCiAgICAiR2V0QXR0cnMiOiBbCiAgICAgICJocmVmIiwKICAgICAgInNyYyIKICAgIF0sCiAgICAiRmxhZyI6IDE5NjU1NjcKICB9LAogICJ1bWlkIjogewogICAgInRpbWVvdXQiOiAzMDAwLAogICAgInRpbWVzdGFtcCI6ICIkIXRpbWVzdGFtcCIsCiAgICAidG9rZW4iOiAiJCF0b2tlbiIsCiAgICAic2VydmljZVVybCI6ICJodHRwczovL3ludWYuYWxpcGF5LmNvbS9zZXJ2aWNlL3VtLmpzb24iLAogICAgImFwcE5hbWUiOiAiJCFhcHBOYW1lIiwKICAgICJjb250YWluZXJzIjogewogICAgICAiZmxhc2giOiAiY29udGFpbmVyIiwKICAgICAgImRjcCI6ICJjb250YWluZXIiCiAgICB9CiAgfQp9"></script>-->
+</head>
+<body>
+<div id="content" class="content">
+    <div class="ucSimpleHeader" id="header">
+        <a href="http://www.meizu.com/" class="meizuLogo"><i class="i_icon"></i></a>
+    </div>
+    <img src="/webResources/loginVerifyResources/flyme.png" alt="Flyme" class="logo hide" id="logo"/>
+    <div class="banner-box">
+        <div class="bg-box">
+            <form id="mainForm" class="main-form" enctype="application/x-www-form-urlencoded" novalidate="novalidate">
+                <div class="tab-title">
+                    <h3 id="toVCodeLogin" href="javascript:void(0);">验证码登录</h3>
+                </div>
+                <div class="tip-box visiblility-hidden">
+                    <i class="err-ico"></i>
+                    <span class="tip-font"></span>
+                    <span class="close-ico"></span>
+                </div>
+                <div class="normalInput cycode-box show-cycode" id="cycode-box">
+                    <div class="cycode-selectbox phoneText" sytle="height: 36px;">
+                        <span class="cycode-selected cycode-height cycodePhone"> <input readonly=""
+                                                                                        class="ipt-cycode phone_num"
+                                                                                        id="cycode" value="+86"/> <i
+                                class="arrow-down"></i> </span>
+                        <input id="phone" v-model="telPhone" name="phone" class="ipt-phone phone_num inp-focus"
+                               maxlength="20" placeholder="手机号码" autocomplete="off" tabindex="2"/>
+                    </div>
+                </div>
+
+                <span id="j_geetest_error" class="error geetest_error" style="display:none"></span>
+                <div class="normalInput box-input hide" id="getKeyDiv" style="display: block;">
+                    <input type="text" v-model="verifyCode" placeholder="验证码" class="pswInput inp-focus" name="kapkey" id="kapkey"
+                           maxlength="6" autocomplete="off" tabindex="3"/>
+                    <span class="inputTip"></span>
+                    <span class="form-line"></span>
+                    <button id="getKey" @click="gotoVerify" style="background: white"
+                            class="linkABlue">获取验证码
+                    </button>
+                </div>
+                <div class="normalInput fieldInput" style="display:none;">
+                    <input id="tips-show"/>
+                </div>
+                <div style="padding-bottom: 17px;">
+                    <a class="hide a_acount_login" id="a_login"
+                       href="https://login.flyme.cn/login/login.html?appuri=&amp;useruri=http%3A%2F%2Fstore.meizu.com%2Fmember%2Flogin.htm%3Fuseruri%3Dhttp%3A%2F%2Fwww.meizu.com&amp;service=store&amp;sid=unionlogin">普通登录</a>
+                </div>
+                <a id="register" @click="loginVerify" class="fullBtnBlue">登录</a>
+                <div class="transferField">
+                    <a class="go2forgetpwd linkABlue rememberFieldForA" href="https://i.flyme.cn/forgetpwd"
+                       target="_Blank">忘记密码?</a>
+                    <a class="go2register linkABlue" href="/pages/regist.html">注册</a>
+                </div>
+                <a href="/pages/loginPassword.html" id="qr-btn" class="qr-btn"></a>
+                <div id="qr-panel" class="qr-panel hide">
+                    <h3>扫描安全登录</h3>
+                    <div class="qr-img-box">
+                        <img alt=""/>
+                    </div>
+                    <p class="tips">请使用最新Flyme系统相机扫码功能，扫码登录</p>
+                    <p class="qr-success-tips hide">扫描成功，请在手机点击“确认登录”</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div id="flymeFooter" class="footerWrap">
+    <div class="footerInner">
+        <div class="footer-layer1">
+            <div class="footer-innerLink">
+                <a href="http://www.meizu.com/about.html" target="_blank" title="关于魅族">关于魅族</a>
+                <img class="foot-line" src="/webResources/loginVerifyResources/space.gif"/>
+                <a href="http://hr.meizu.com/" target="_blank" title="工作机会">工作机会</a>
+                <img class="foot-line" src="/webResources/loginVerifyResources/space.gif"/>
+                <a href="http://www.meizu.com/contact.html" target="_blank" title="联系我们">联系我们</a>
+                <img class="foot-line" src="/webResources/loginVerifyResources/space.gif"/>
+                <a href="https://www.meizu.com/legal.html" target="_blank" title="法律声明">法律声明</a>
+                <img class="foot-line" src="/webResources/loginVerifyResources/space.gif"/>
+                <a href="https://uc-res.mzres.com/resources/uc/wlogin/faq/html/index.html" target="_blank" title="常见问题">常见问题</a>
+                <img class="foot-line" src="/webResources/loginVerifyResources/space.gif"/>
+                <div href="javascript:void(0);" id="globalName" class="footer-language" title="简体中文">
+                    简体中文&nbsp;&nbsp;&nbsp;
+                    <div id="globalContainer" class="footer-language_menu">
+                        <a href="javascript:void(0)" title="简体中文" class="checked">简体中文</a>
+                        <a href="https://login.flyme.cn/sso?appuri=&amp;useruri=http://store.meizu.com/member/login.htm?useruri=http://www.meizu.com&amp;sid=unionlogin&amp;service=store&amp;autodirct=true&amp;lang=en_US"
+                           id="i18n-link" title="English" class="ClobalItem">English</a>
+                        <script type="text/javascript" src="/webResources/loginVerifyResources/flow.js.下载"></script>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-service">
+                <span class="service-label">客服热线</span>
+                <span class="service-num">400-788-3333</span>
+                <a id="service-online" class="service-online" href="javascript:void(0);" title="在线客服">在线客服</a>
+            </div>
+            <div class="footer-outerLink">
+                <a class="footer-sinaMblog" href="http://weibo.com/meizumobile" target="_blank"><i
+                        class="i_icon"></i></a>
+                <a id="footer-weChat" class="footer-weChat" href="javascript:void(0);" target="_blank"><i
+                        class="i_icon"></i></a>
+                <a class="footer-qzone" href="http://user.qzone.qq.com/2762957059" target="_blank"><i
+                        class="i_icon"></i></a>
+            </div>
+        </div>
+        <div class="clear"></div>
+        <div id="flymeCopyright" class="copyrightWrap">
+            <div class="copyrightInner">
+                <span>&copy;<script type="text/javascript">document.write(new Date().getFullYear());</script>2020 Meizu Telecom Equipment Co., Ltd. All rights reserved.</span>
+                <a href="http://www.miitbeian.gov.cn/" class="linkAGray" target="_blank">备案号: 粤ICP备13003602号-4</a>
+                <a href="http://www3.res.meizu.com/static/cn/widget/footer/images/icp2_b2dcb54.jpg" class="linkAGray"
+                   target="_blank">经营许可证编号: 粤B2-20130198</a>
+                <a target="_blank" href="http://www2.res.meizu.com/zh_cn/images/common/com_licence.jpg" hidefocus="true"
+                   class="linkAGray">营业执照</a>
+                <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=44049102496076"
+                   style="background: url('https://uc-res.mzres.com/resources/uc/wlogin/member/images/ghs.png') no-repeat; background-size: 15px 14px; padding-left: 18px;background-position-y: center;">粤公网安备
+                    44049102496076号</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="wechatPic"></div>
+
+<!--接入风控sh.min.js-->
+<script type="text/javascript" src="/webResources/loginVerifyResources/sh.min.js.下载" charset="utf-8"></script>
+<script type="text/javascript" src="/js/vue.js"></script>
+<script type="text/javascript" src="/js/axios.min.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: "#content",
+        data: {
+            telPhone: "",
+            verifyCode: "",
+            rightVerifyCode: "",
+            loginUser: {
+                username: ""
+            }
+        },
+        mounted: function () {
+            console.log("看看啥时候");
+            var loginUser = window.sessionStorage.getItem("loginUser");
+            loginUser = JSON.parse(loginUser);
+            if (loginUser != null) {
+                this.telPhone = loginUser.username;
+                console.log(loginUser.username);
+            }
+            var rightVerifyCode = window.sessionStorage.getItem("rightVerifyCode");
+            if (rightVerifyCode != null) {
+                this.rightVerifyCode = rightVerifyCode;
+            }
+        },
+        methods: {
+            gotoVerify: function () {
+                event.preventDefault();
+                // alert(this.telPhone);
+                var that = this;
+                this.loginUser.username = this.telPhone;
+                // console.log(this.loginUser);
+                window.sessionStorage.setItem("loginUser", JSON.stringify(vm.loginUser));
+                axios.get("/users/getVerifyCode", {
+                    params: {
+                        telPhone: that.telPhone,
+                        loginOrRegist:1
+                    }
+                }).then(function (res) {
+                    // window.location.href = "/pages/regist.html";
+                    console.log(res.data.data);
+                    if (res.data.code == 0) {
+                        that.rightVerifyCode = res.data.data;
+                        console.log(res.data.data);
+                        window.sessionStorage.setItem("rightVerifyCode", res.data.data);
+                    } else {
+                        alert(res.data.msg);
+                    }
+                })
+            },
+            loginVerify: function () {
+                this.loginUser.username = this.telPhone;
+                console.log(this.loginUser);
+                window.sessionStorage.setItem("loginUser", JSON.stringify(vm.loginUser));
+                axios.get("/users/getLoginUsername", {
+                    params: {
+                        username: this.telPhone
+                    }
+                }).then(function (res) {
+                    // console.log(res.data);
+                    console.log(vm.verifyCode);
+                    console.log(vm.rightVerifyCode);
+                    if (res.data.code == 0) {
+                        // alert(res.data.msg);
+                        if (vm.verifyCode == "") {
+                            alert("验证码不能为空，请输入");
+                        } else if (vm.verifyCode != vm.rightVerifyCode) {
+
+                            alert("验证码错误，请重新输入");
+                        } else {
+                            alert("登录成功");
+                            window.location.href = "/index.jsp"
+                        }
+                    } else {
+                        alert(res.data.msg);
+                    }
+                })
+
+            },
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,603 @@
+var registerUrl = '/uc/system/webjsp/member/registerByPhone';
+// var getKeyUrl = '/uc/system/vcode/sendCgiSmsVCode';
+var getKeyUrl = '/uc/system/vcode/sendSmsVCode';
+var validPhoneUrl = '/uc/system/webjsp/member/isValidPhone';
+var accountLoginUrl = 'https://login.flyme.cn/sso/login';
+//var accountLoginUrl_jsonp = 'https://login.flyme.cn/sso/loginjcb';
+var directLoginUrl = 'https://login.flyme.cn/login/login.html';
+var isValidRegisterSmsVCode = '/uc/system/vcode/isValidRegisterSmsVCode';
+var isNotInChina = /in\.meizu\.com/.test(location.hostname);
+var loginUrlHref = '';
+var registerUrlHref = '';
+var isReBindSuccess = false;
+
+if (isNotInChina) {
+    accountLoginUrl = accountLoginUrl.replace(/\.flyme\.cn/, '.in.meizu.com')
+        //    accountLoginUrl_jsonp = accountLoginUrl_jsonp.replace(/\.flyme\.cn/, '.in.meizu.com')
+    directLoginUrl = directLoginUrl.replace(/\.flyme\.cn/, '.in.meizu.com')
+}
+
+var clickSubmit = 0;
+
+$(function() {
+    $('#acceptFlyme').mzCheckBox({
+        /*click: function(e, event) {
+            var error = $('#acceptError');
+            var $field = $('#rememberField');
+            if (!$(e).prop('checked')) {
+                error.show();
+                $field.css('margin-bottom', 10);
+            } else {
+                error.hide();
+                $field.css('margin-bottom', 30);
+            }
+        },*/
+    });
+    var form = new Form();
+    form.init();
+
+    if ('CountryCode' in window) window['CountryCode'].init()
+
+    // $("#mainForm").click(function() {
+    //     if (clickSubmit != 0) {
+    //         clickSubmit = 0;
+    //         return;
+    //     }
+    //     util.removeTipsShowMsg("tips-show");
+    // });
+});
+var Form = function() {
+    this.$form = $("#mainForm");
+    this.$btn = $('#register');
+    this.$getKey = $('#getKey');
+    this.$phone = $('#phone');
+    this.$pwd = $('#password');
+    this.$pwd1 = $('#password1');
+    this.$captcha2 = $('#captcha2');
+};
+$.extend(Form.prototype, {
+    init: function() {
+        this.initParameter();
+        this.initValidate();
+        this.initFormEvent();
+        //util.initPlaceholder(this.$phone, '手机号码');
+        //util.initPlaceholder($('#kapkey'), '验证码');
+        //util.initPlaceholder(this.$pwd, '密码');
+        //util.initPlaceholder(this.$pwd1, '密码');
+        this.initResize();
+        /*
+        $.floatTip({
+            'data': [{
+                'id': 'phone',
+                'text': '输入手机号码，可用于登录和找回密码',
+                'width': 200,
+                'loc': 1,
+                'diffy': 2,
+                'diff': 10
+            }, {
+                'id': 'kapkey',
+                'text': '请输入手机收到的验证码',
+                'width': 200,
+                'loc': 1,
+                'diffy': 2,
+                'diff': 10
+            }, {
+                'id': 'password1',
+                'text': '长度为8-16个字符，区分大小写，至少包含两种类型',
+                'width': 200,
+                'loc': 1,
+                'diffy': 2,
+                'diff': 10
+            }, {
+                'id': 'password',
+                'text': '长度为8-16个字符，区分大小写，至少包含两种类型',
+                'width': 200,
+                'loc': 1,
+                'diffy': 2,
+                'diff': 10
+            }]
+        });*/
+        util.disableVcode(this.$getKey);
+        if ($.browser.msie && $.browser.version == '6.0') {
+            this.$pwd.focus();
+            this.$pwd.blur();
+        }
+    },
+    initParameter: function() {
+        var appuri = util.getParameter("appuri");
+        var useruri = util.getParameter("useruri");
+        var service = util.getParameter("service");
+        var sid = util.getParameter("sid");
+        var urlSubfix = "";
+        if (appuri != null) {
+            $('#appuri').val(appuri);
+            urlSubfix = urlSubfix + "appuri=" + encodeURIComponent(appuri) + "&";
+        }
+        if (useruri != null) {
+            $('#useruri').val(useruri);
+            urlSubfix = urlSubfix + "useruri=" + encodeURIComponent(useruri) + "&";
+        }
+        if (service != null) {
+            $('#service').val(service);
+            urlSubfix = urlSubfix + "service=" + encodeURIComponent(service) + "&";
+        }
+        if (sid != null) {
+            $('#sid').val(sid);
+            urlSubfix = urlSubfix + "sid=" + encodeURIComponent(sid);
+        }
+        var oldLoginHerf = $("#toLogin").attr("href");
+        var oldRegisterHerf = $("#toRegister").attr("href");
+        var nameRegisterHref = "/nameRegister";
+
+        if (isNotInChina) {
+            oldLoginHerf = oldLoginHerf.replace(/\.flyme\.cn/, '.in.meizu.com')
+            $("#toLogin").attr("href", oldLoginHerf);
+            //oldRegisterHerf = oldRegisterHerf.replace(/\.flyme\.cn/, '.in.meizu.com')
+        }
+
+        if (urlSubfix != "") {
+            urlSubfix = "?" + urlSubfix;
+            $("#toLogin").attr("href", oldLoginHerf + urlSubfix);
+            //$("#toRegister").attr("href", oldRegisterHerf + urlSubfix);
+            //$("#toNameRegister").attr("href", nameRegisterHref + urlSubfix);
+        }
+        loginUrlHref = oldLoginHerf + urlSubfix;
+        registerUrlHref = location.href;
+    },
+    initInput: function($input, info) {
+        util.initPlaceholder($input, info, 'emptyInput');
+    },
+    initResize: function() {
+        global.resizer.setProperty('minH', 800);
+        $(document.body).css('min-height', 800);
+    },
+    initFormEvent: function() {
+        var _this = this;
+        this.$btn.click(function() {
+            _this.$form.submit();
+        });
+        this.$form.bind("keypress", function(e) {
+            if (e.keyCode == 13) {
+                _this.$btn.click();
+            }
+        });
+        util.initVcode(this.$getKey, getKeyUrl, 60, function() {}, function(after, dealCount) {
+            // 改版不需要图文验证码了
+            // nAlert('<p>请输入图中文字</p><p class="normalInput"><input type="text" value="" name="kapmap" id="kapmap" class="kapkey" maxlength="6" autocomplete="off"><img id="imgKey" class="pointer" title="点击可刷新验证码" src="/kaptcha.jpg?t=1411024557506"></p>',"提示",function(){
+            var param = {};
+            // param.kapkey = $('#kapmap').val();
+            param.phone = '00' + ($('#cycode').val() - 0) + ':' + _this.$phone.val();
+            param.vCodeTypeValue = "10";
+            $.post(getKeyUrl, param, function(result) {
+                result = util.getData(result, false, function(mes, code, callback) {
+                    //                        callback();
+
+                    if (code != 200 && mes != "") {
+                        //util.addTipsShowMsg("tips-show", mes);
+                        util.showTip(mes);
+                        return true;
+                    }
+                });
+                if (result == true) {
+                    dealCount();
+                }
+            }).error(function() { util.showTip("网络错误"); });
+            // });
+            // $("#kapmap").focus();
+            // function refreshImg(){
+            //     $("#imgKey")[0].src = "/kaptcha.jpg?t="+new Date().getTime();
+            //     return false;
+            // }
+            // $("#imgKey").click(refreshImg);
+            // refreshImg();
+            // $(".alertDialogMain").css("border","none");
+        });
+
+        function _createPwd(type) {
+            if (type == 'text') {
+                _this.$pwd.val(_this.$pwd1.val());
+                _this.$pwd.attr('name', 'password').show();
+                _this.$pwd1.removeAttr('name').hide();
+                if (!_this.$pwd.val()) {
+                    _this.$pwd.next('.inputTip').show();
+                }
+                _this.$pwd1.next('.inputTip').hide();
+            } else {
+                _this.$pwd1.val(_this.$pwd.val());
+                _this.$pwd1.attr('name', 'password').show();
+                _this.$pwd.removeAttr('name').hide();
+                if (!_this.$pwd1.val()) {
+                    _this.$pwd1.next('.inputTip').show();
+                }
+                _this.$pwd.next('.inputTip').hide();
+            }
+            $(this).removeClass(type == 'text' ? 'pwdBtn' : 'pwdBtnShow');
+            $(this).addClass(type == 'text' ? 'pwdBtnShow' : 'pwdBtn');
+        };
+        $('#pwdBtn').click(function() {
+            if ($(this).hasClass('pwdBtn')) {
+                _createPwd.call(this, 'text');
+            } else {
+                _createPwd.call(this, 'password');
+            }
+        });
+        $('#flymeService .mzchkbox').click(function() {
+            util.hideTip();
+        })
+        util.addBtnFocusClass();
+        util.removeTipEvent();
+        $('#nextStep').click(function() {
+            var This = $(this)
+            var step_num = This.attr('data-step');
+            switch (step_num) {
+                case '1':
+                    _this.validateStepOne(This, step_num);
+                    break;
+                case '2':
+                    _this.validateStepTwo(This, step_num);
+                    break;
+                case '3':
+                    _this.ajaxRegister(_this);
+            }
+
+        });
+    },
+    validateStepTwo: function(This, step_num) {
+        if ($('.tip-box').hasClass('visiblility-hidden')) {
+            var _this = this;
+            var param = {};
+
+            param.phone = '00' + ($('#cycode').val() - 0) + ':' + _this.$phone.val();
+            param.vCodeTypeValue = "10";
+            param.vcode = $('#kapkey').val();
+            if (param.vcode.length) {
+                $.post(isValidRegisterSmsVCode, param, function(result) {
+                    result = util.getData(result, false, function(mes, code, callback) {
+                        //                        callback();
+                        if (code != 200 && mes != "") {
+                            util.showTip(mes);
+                            return true;
+                        }
+                    });
+                    if (result == false) {
+                        util.showTip('请输入正确的验证码');
+                    } else {
+                        _this.stepEvent(This, step_num)
+                    }
+                }).error(function() { util.showTip("网络错误"); });
+            } else {
+                util.showTip('请输入验证码');
+            }
+        }
+
+
+    },
+    validateStepOne: function(This, step_num) {
+        var _this = this;
+        
+        if (!GT_status) {
+            util.showTip(GT_Tips);
+            //重新绑定极验回调方法，加入关闭提示语功能
+            if(window.captchaObj && !isReBindSuccess) {
+                isReBindSuccess = true;
+                window.captchaObj.onSuccess(function(){
+                    GT_status = true;
+                    if(GT_Tips == $('.tip-font').text()){
+                        $('.tip-box').addClass('visiblility-hidden');
+                    }
+                    $('#j_geetest_error').html('').hide();
+                });
+            }
+        } else if (!$.trim(_this.$phone.val()).length) {
+            util.showTip('请输入完整的注册信息');
+        }else if(!/^\d{7,11}$/.test(_this.$phone.val())){
+            util.showTip('请输入合法的手机号码');
+        } else if (!$('#acceptFlyme').prop('checked')) {
+            util.showTip('请先同意用户条款');
+        } else if (!$('.tip-box').hasClass('visiblility-hidden')) {
+            return false;
+        } else {
+            _this.stepEvent(This, step_num);
+        }
+    },
+    ajaxCode: function(cb, that) {
+        var _this = that;
+        var param = {},
+            This;
+
+        $o = _this.$getKey;
+
+        var _beginCount = function(count) {
+            $o.addClass('invalidBtn');
+            $o.text(count + '秒后重新获取');
+            interval = setInterval(function() {
+                count--;
+                $o.text(count + '秒后重新获取');
+                if (count <= 0) {
+                    clearInterval(interval);
+                    $o.text('获取验证码');
+                    $.data($o[0], 'going', false);
+                    if ($.data($o[0], 'isPhoneOk')) {
+                        $o.removeClass('invalidBtn');
+                    }
+                }
+            }, 1000);
+        };
+
+        function _dealCount() {
+            $.data($o[0], 'going', true);
+            $.data($o[0], 'isPhoneOk', true);
+            _beginCount(60);
+        }
+
+        param.phone = '00' + ($('#cycode').val() - 0) + ':' + _this.$phone.val();
+        param.vCodeTypeValue = "10";
+        $('.geetest_form input').each(function() {
+            This = $(this);
+            param[This.attr('name')] = This.val();
+        });
+        var _this = this;
+        $.post(getKeyUrl, param, function(result) {
+            result = util.getData(result, false, function(mes, code, callback) {
+                //                        callback();
+                if (code != 200 && mes != "") {
+                    //util.addTipsShowMsg("tips-show", mes);
+                    util.showTip(mes);
+                    window.gt_captcha_obj && gt_captcha_obj.refresh();
+                    window.captchaObj && window.captchaObj.reset(); // 调用该接口进行重置
+                    return true;
+                }
+            });
+            if (result == true) {
+                //隐藏极验
+                _this.$captcha2.hide();
+                if (cb) {
+                    cb();
+                }
+                _dealCount();
+            }
+        }).error(function() { util.showTip("网络错误"); });
+    },
+    ajaxPhone: function(cb) {
+        var _this = this;
+        var param = {};
+        var code = $('#cycode').val() - 0;
+        var phone = _this.$phone.val()
+        param.phone = '00' + code + ':' + phone;
+
+        $.post(validPhoneUrl, param, function(result) {
+            result = util.getData(result, false, function(mes, code, callback) {
+
+                if (code != 200 && mes != "") {
+                    util.showTip(mes);
+                    return true;
+                }
+            });
+            if (result == true) {
+                if (cb) {
+                    cb();
+                }
+            } else {
+                //隐藏极验
+                _this.$captcha2.hide();
+                $('.box-geetest,#flymeService').addClass('visiblility-hidden');
+                $('#nextStep').text('立即登录').prop('href', loginUrlHref);
+                $('#nextStep').attr('data-step','4');
+                $('.go2register').prop('href', registerUrlHref).text('注册').attr('data-step','4');
+                $('#cycode-box').removeClass().html('<div class="isphone">+' + code + ' ' + phone + '</div> <div class="hasRegister">该手机号已注册 Flyme 账号</div>');
+            }
+        }).error(function() { util.showTip("网络错误"); });
+    },
+    ajaxRegister:function(_this){
+        var data = CountryCode.getFormData(_this.$form)
+
+        data['phone'] = '00' + ($('#cycode').val() - 0) + ':' + data['phone']
+        data['vCodeTypeValue'] = '10'
+        data['vcode'] = $('#kapkey').val()
+
+        var kk = cryPP.generateMix();
+        data['password'] = cryPP.excutePP(data['password'], kk);
+
+        $.ajax({
+            type: "post",
+            url: registerUrl,
+            data: data,
+            dataType: "json",
+            beforeSend: function(request) {
+                request.setRequestHeader("CryKK-Mix", kk);
+            },
+            success: function(result) {
+                result = util.getData(result, false, function(mes, code) {
+                    util.showTip(mes);
+                    return;
+                });
+                if (result == null) return;
+                if (result) {
+
+                    //注册完直接登录
+                    var loginUrl = directLoginUrl + '?service=' + $('#service').val() + '&sid=' + $('#sid').val() + '&appuri=' + $('#appuri').val() + '&useruri=' + $('#useruri').val();
+                    window.location.href = loginUrl;
+
+                }
+            },
+            error: function(result) {
+                util.showTip("网络错误");
+            }
+        });
+    },
+    stepEvent: function(This, step_num) {
+        var that = this;
+        var Dom = $('.normalInput');
+        switch (step_num) {
+            case '1':
+                that.ajaxPhone(function() {
+                    that.ajaxCode(function() {
+                        Dom.eq(0).addClass('visiblility-hidden');
+                        $('.box-geetest').addClass('visiblility-hidden');
+                        $('#flymeService').remove();
+                        Dom.eq(1).removeClass('hide');
+                        $('.txt-box').removeClass('visiblility-hidden');
+                        This.attr('data-step', '2').text('下一步');
+                        $('#phoneNum').text('+' + ($('#cycode').val() - 0) + ' ' + that.$phone.val())
+                    }, that);
+                });
+                break;
+            case '2':
+                if ($('.tip-box').hasClass('visiblility-hidden')) {
+                    Dom.eq(1).addClass('hide');
+                    Dom.eq(2).removeClass('hide');
+                    $('.txt-box').text('密码长度为 8-16 位，至少包含字母、数字和符号中的两种类型，且不可与账号相同');
+                    This.attr('data-step', '3').text('提交');
+                }
+                break;
+        }
+
+
+
+    },
+    initValidate: function() {
+        var _this = this;
+        this.$form.validate($.extend(util.validate, {
+            submitHandler: function() {
+                var data = CountryCode.getFormData(_this.$form)
+
+                data['phone'] = '00' + ($('#cycode').val() - 0) + ':' + data['phone']
+                data['vCodeTypeValue'] = '10'
+                data['vcode'] = $('#kapkey').val()
+
+                var kk = cryPP.generateMix();
+                data['password'] = cryPP.excutePP(data['password'], kk);
+
+                $.ajax({
+                    type: "post",
+                    url: registerUrl,
+                    data: data,
+                    dataType: "json",
+                    beforeSend: function(request) {
+                        request.setRequestHeader("CryKK-Mix", kk);
+                    },
+                    success: function(result) {
+                        result = util.getData(result, false, function(mes, code) {
+                            // if (util.addTipsShowMsg("tips-show", mes)) {
+                            //     return;
+                            // }
+                            util.showTip(mes);
+                            return;
+                        });
+                        if (result == null) return;
+                        if (result) {
+                            // util.doAsyncPost(accountLoginUrl, function (r) {
+                            //     r = util.getData(r);
+                            //     if (r == null)return;
+                            //     location.href = r;
+                            // }, {account: _this.$phone.val(), password: $('input[name=password]').val(), appuri: $('#appuri').val(), useruri: $('#useruri').val(), service: "unionlogin", sid: $('#sid').val()});
+
+                            //注册完直接登录
+                            var loginUrl = directLoginUrl + '?service=' + $('#service').val() + '&sid=' + $('#sid').val() + '&appuri=' + $('#appuri').val() + '&useruri=' + $('#useruri').val();
+                            window.location.href = loginUrl;
+
+                            //                            var kk = cryPP.generateMix();
+                            //                            var password = cryPP.excutePP($('input[name=password]').val(), kk);
+
+                            //                            var _s = document.createElement('script');
+                            //                                _s.type = "text/javascript";
+                            //                                _s.src = accountLoginUrl_jsonp+'?service=jcb'+'&account='+_this.$phone.val()+'&password='+password+'&sid='+$('#sid').val()+'&appuri='+$('#appuri').val()+'&useruri='+$('#useruri').val()+'&cryKK='+kk;
+                            //                            document.getElementsByTagName('head')[0].appendChild(_s);
+                        }
+                    },
+                    error: function(result) {
+                        //                        nAlert("网络错误！", "提示");
+                        //util.addTipsShowMsg("tips-show", "网络错误");
+                        //$(".alertDialogMain").css("border", "")
+                        util.showTip("网络错误");
+                    }
+                });
+            },
+            showErrors: function(errorMap, errorList) {
+                var defShowErr = this.defaultShowErrors
+                var phoneMsg = errorMap['phone']
+                var $cycodeBox = $('#cycode-box')
+                var kapkeyMsg = errorMap['kapkey']
+                var passwordMsg = errorMap['password']
+
+                if (phoneMsg == "请输入手机号码") {
+                    util.showTip("请填写完整的注册信息");
+                    delete errorMap['phone']
+                    clickSubmit = 1;
+                    return false;
+                } else if (kapkeyMsg == "请填写验证码") {
+                    util.showTip("请填写完整的注册信息");
+                    delete errorMap['kapkey']
+                    clickSubmit = 1;
+                    return false;
+                } else if (passwordMsg == "密码不能为空") {
+                    util.showTip("请填写完整的注册信息");
+                    delete errorMap['password']
+                    clickSubmit = 1;
+                    return false;
+                } else if (phoneMsg) {
+                    util.showTip(phoneMsg);
+                    delete errorMap['phone']
+                    clickSubmit = 1;
+                    return false;
+                } else if (kapkeyMsg) {
+                    util.showTip(kapkeyMsg);
+                    delete errorMap['kapkey']
+                    clickSubmit = 1;
+                    return false;
+                } else if (passwordMsg) {
+                    util.showTip(passwordMsg);
+                    delete errorMap['password']
+                    clickSubmit = 1;
+                    return false;
+                }
+
+                //$cycodeBox.removeClass('error')
+                if (phoneMsg) {
+                    //$cycodeBox.addClass('error')
+                    // if (!$('#err-tips-phone').length)
+                    //     $('<span id="err-tips-phone" for="phone" class="error">' + phoneMsg + '</span>').insertAfter($cycodeBox)
+
+                    util.showTip(phoneMsg)
+                    delete errorMap['phone']
+                }
+
+                defShowErr.call(this, errorMap, errorList)
+            },
+            rules: util.createRule({
+                phone: null,
+                password: null,
+                kapkey: null
+            }),
+            messages: util.createMes({
+                phone: {
+                    zdiyRemote: function() {
+                        var u = 'https://login.flyme.cn/sso';
+                        var u2 = 'https://i.flyme.cn/uc/webjsp/member/detail&sid=unionlogin&service=ucweb&autodirct=true';
+                        if (isNotInChina) {
+                            u = u.replace(/\.flyme\.cn/, '.in.meizu.com');
+                            u2 = u2.replace(/\.flyme\.cn/, '.in.meizu.com');
+                        }
+                        return '该手机号码已注册,<a class="linkABlue" href="' + u + '?registedAccount=' + $.trim($("#phone").val()) + '&useruri=' + u2 + '">立即登录</a>'
+                            // return '该手机号码已注册,<a class="linkABlue" href="https://login.flyme.cn/login.jsp?registedAccount='+$.trim($("#phone").val())+'&useruri=https://i.flyme.cn/uc/webjsp/member/detail&sid=unionlogin&service=ucweb&autodirct=true">立即登录</a>'
+                    }
+                },
+                password: null,
+                kapkey: null
+            }),
+            hideError: function() {},
+            validClass: "aaa"
+        }));
+        this.$pwd1.removeAttr('name');
+    }
+});
+//注册成功返回登陆页面
+function Glogin(json) {
+    if (json.code == 200) {
+        location.href = json.url;
+    } else {
+        //        util.jAlert(json.message, '提示');
+        //util.addTipsShowMsg("tips-show", json.message);
+        util.showTip(json.message);
+    }
+}

@@ -47,5 +47,24 @@
     select * from tb_address
     where uid = #{uid}
   </select>
+  <update id="updateAddressByAid" parameterType="com.jojo.pojo.Address">
+    update tb_address
+    set
+      name = #{name,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      addres_detail = #{addresDetail,jdbcType=VARCHAR}
+    where aid = #{aid,jdbcType=INTEGER}
+  </update>
 
+  <insert id="AddNewAddress" parameterType="com.jojo.pojo.Address">
+    insert into tb_address (uid, name,
+      tel, province, city,
+      country, addres_detail)
+    values (#{uid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+      #{tel,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR},
+      #{country,jdbcType=VARCHAR}, #{addresDetail,jdbcType=VARCHAR})
+  </insert>
 </mapper>

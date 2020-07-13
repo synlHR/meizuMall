@@ -15,4 +15,8 @@ public interface AddressMapper {
     int updateByPrimaryKey(Address record);
 
     List<Address> selectByUid(Integer uid);
+
+    void updateAddressByAid(Address address);
+
+    void AddNewAddress(Address address);
 }

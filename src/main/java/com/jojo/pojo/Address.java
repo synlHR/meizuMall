@@ -1,6 +1,7 @@
 package com.jojo.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Address implements Serializable {
     private Integer aid;
@@ -83,5 +84,19 @@ public class Address implements Serializable {
 
     public void setAddresDetail(String addresDetail) {
         this.addresDetail = addresDetail == null ? null : addresDetail.trim();
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "aid=" + aid +
+                ", uid=" + uid +
+                ", name='" + name + '\'' +
+                ", tel='" + tel + '\'' +
+                ", province='" + province + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", addresDetail='" + addresDetail+
+                '}';
     }
 }

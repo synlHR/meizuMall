@@ -341,6 +341,7 @@
                             alert(res.data.msg);
                             //将返回的订单主表id传递到订单界面
                             window.localStorage.setItem("oid",res.data.data);
+                            window.localStorage.setItem("orderTime",new Date());
                             window.location.href="/pages/order.html";
                         }else{
                             alert(res.data.msg);
